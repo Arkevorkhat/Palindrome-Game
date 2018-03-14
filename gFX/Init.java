@@ -2,7 +2,7 @@ package gFX;
 
 import javax.swing.JFrame;
 
-public class Init {
+public class Init extends GfxCore {
 
 	/*
 	 * TODO: Finish programming initialization tasks
@@ -12,7 +12,7 @@ public class Init {
 	public JFrame prep(int x, int y, String name, Boolean borderless) {
 		JFrame jf = new JFrame(name);
 		jf.setSize(x, y);
-		jf.setDefaultLookAndFeelDecorated(borderless);
+		JFrame.setDefaultLookAndFeelDecorated(borderless);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		return jf;
 	}
