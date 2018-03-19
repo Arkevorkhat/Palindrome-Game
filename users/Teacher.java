@@ -6,7 +6,6 @@ public class Teacher extends Adult implements iMSG {
 	public Teacher(String UN, String PW, Child[] chldrn, long CID) {
 		super(UN, PW, chldrn);
 		setClassID(CID);
-		// TODO Auto-generated constructor stub
 	}
 	@Override
 	public Boolean sendMessage(String Message, Person recipient) {

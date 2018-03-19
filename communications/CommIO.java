@@ -1,6 +1,6 @@
 package communications;
 
 public interface CommIO <iPtype> {
-	public void pushToFile();
+	public void pushToTree();
 	iPtype getByID(long ID);
 }

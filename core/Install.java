@@ -14,7 +14,6 @@ public class Install {
 			System.out.println(messages.createNewFile());
 			System.out.println(users.createNewFile());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

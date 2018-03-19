@@ -6,13 +6,25 @@ public class Person {
 	public Person(String UN, String PW) {
 		setUN(UN);
 		setUUID();
-		this.pwHash = hashPW(PW);
+		pwHash = hashPW(PW);
+	}
+	
+	public Person() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public static Person makePerson(String UN, String PW) {
+		Person temp = new Person();
+		temp.setUN(UN);
+		temp.setUUID();
+		temp.pwHash=temp.hashPW(PW);
+		return temp;
 	}
 
 	public String username;
 	private long salt; // Yes, Salted Hashes, i know it's overkill.
 	private long pwHash;
-	private long UUID;
+	private long UID;
 
 	private void setUN(String username) {
 		this.username = username;
@@ -30,16 +42,16 @@ public class Person {
 
 	private void setSalt() {
 		Random r = new Random();
-		this.salt = r.nextLong();
+		this.salt = r.nextLong();	
 	}
 
 	private void setUUID() {
 		Random r = new Random();
-		this.UUID = r.nextLong();
+		this.UID = r.nextLong();
 	}
 
 	public long getUUID() {
-		return this.UUID;
+		return this.UID;
 	}
 
 	public Boolean validateLogin(String PW) {

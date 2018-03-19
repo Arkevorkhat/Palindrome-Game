@@ -1,5 +1,5 @@
 package core;
-
+import communications.FileHandler;
 /*
  * Todos are closed by replacing "todo" with TO DO.
  */
@@ -10,6 +10,8 @@ public class PalindromeGame {
 	 * TODO: create main method logic.
 	 */
 	public static void main(String[] args) {
-		Install.flowDirs();
+		String.valueOf(Integer.MAX_VALUE);
+		String foo = new String("Bar");
+		foo.length();
 	}
 }

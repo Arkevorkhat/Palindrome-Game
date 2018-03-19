@@ -1,8 +1,13 @@
 package communications;
 
 import java.util.Random;
+import org.jdom2.*;
+import org.jdom2.output.*;
 
-public class CommLink {
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+public class CommLink{
 
 	public long lastID;
 
@@ -12,11 +17,19 @@ public class CommLink {
 	}
 
 	/*
-	 * TODO: write file handling to allow a parent or teacher to leave a message for
-	 * the student. Parents can only leave messages for their child, teachers can
-	 * leave blanket messages to the entire class.
+	 * TODO: Finish Writing Top-Level File Handling Routines.
+	 *	When writing a parsing method, ensure that you use Try/Catch in order to handle nullPointerException, as that is required with this single-file structure.
+	 * XML Formatted as:
+	 * Root
+	 * 		ID
+	 * 			Username
+	 * 			[PasswordHash]
+	 * 			[Message]
+	 * 			[Salt]
+	 * 			[UID]
+	 * 			[Difficulty]
+	 * 			[GradeLevel]
+	 * 			[SenderID]
 	 */
-	public class FileHandler {
-
-	}
+	
 }

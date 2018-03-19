@@ -2,7 +2,7 @@ package logic;
 
 import java.util.Random;
 
-public class Palindrome {
+public final class Palindrome {
 	/*
 	 * TODO: Discuss this file, finalize palindrome logic class.
 	 */
@@ -22,9 +22,6 @@ public class Palindrome {
 	}
 
 	public static String makePalindrome(int length) {
-		/*
-		 * FIX ME: crashes when makePalindrome is passed length>~2.147*10^9
-		 */
 		if (length < Integer.MAX_VALUE) {
 			Random r = new Random();
 			StringBuffer storage = new StringBuffer();

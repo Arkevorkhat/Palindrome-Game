@@ -5,8 +5,7 @@ import users.Person;
 public class UsrFileIO extends CommLink implements CommIO<Person>{
 
 	@Override
-	public void pushToFile() {
-		// TODO Auto-generated method stub
+	public void pushToTree() {
 		
 	}
 
@@ -15,5 +14,4 @@ public class UsrFileIO extends CommLink implements CommIO<Person>{
 	
 		return null;
 	}
-	
 }

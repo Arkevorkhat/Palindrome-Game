@@ -5,10 +5,12 @@ import users.Person;
 public class Message extends CommLink {
 	private String msg;
 	private long senderUID;
+	private long recipientUID;
 
-	public Message(String message, long UID) { // UID: User IDentifier
-		this.msg = message;
-		this.senderUID = UID;
+	public Message(String message, long UID, long UID2) { // UID: User IDentifier
+		msg = message;
+		senderUID = UID;
+		recipientUID = UID2;
 	}
 
 	public String getMessage() {
