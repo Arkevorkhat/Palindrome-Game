@@ -6,10 +6,10 @@ import java.util.*;
 import org.jdom2.*;
 
 @SuppressWarnings("unused")
-public class MsgFileIO extends FileHandler implements CommIO<Message> {
+public class StorFileIO extends FileHandler{
 	private Message[] messages;
 
-	public void pushToTree() { //uses JDOM2, www.JDOM.org
+	public void pushToTree(Message I) { //uses JDOM2, www.JDOM.org
 		// TODO Implement XML node addition
 
 	}
