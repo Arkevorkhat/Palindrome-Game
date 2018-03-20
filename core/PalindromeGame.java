@@ -1,5 +1,7 @@
 package core;
+
 import communications.FileHandler;
+
 /*
  * Todos are closed by replacing "todo" with TO DO.
  */
@@ -11,5 +13,6 @@ public class PalindromeGame {
 	 */
 	public static void main(String[] args) {
 		Install.flowDirs();
+		System.out.println(communications.FileHandler.generateFile());
 	}
 }

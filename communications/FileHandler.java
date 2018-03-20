@@ -1,6 +1,8 @@
 package communications;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -12,13 +14,13 @@ import org.jdom2.output.XMLOutputter;
 import org.jdom2.input.SAXBuilder;
 
 public class FileHandler {
-	String Appdata = System.getenv("APPDATA");
-	String StorPath = new String(Appdata + "\\PalindromeGame\\storage.xml");
-	
+	private static String StorPath = core.Install.getStorage();
+	public Document doc = getDoc();
+
 	public static Document getDoc() {
 		SAXBuilder bld = new SAXBuilder();
 		try {
-			return (Document) bld.build(new File(System.getenv("APPDATA")+"\\PalindromeGame\\storage.xml"));
+			return (Document) bld.build(core.Install.getStorageFile());
 		} catch (JDOMException | IOException e) {
 			e.printStackTrace();
 			return new Document();
@@ -27,10 +29,6 @@ public class FileHandler {
 
 	public boolean push() { // FIXME: Implement File Output
 		try {
-			File doc = new File(StorPath);
-			SAXBuilder dc = new SAXBuilder();
-			Document docu = (Document) dc.build(doc);
-
 			return true;
 		} catch (IOException io) {
 			System.out.println(io.getMessage());
@@ -42,10 +40,11 @@ public class FileHandler {
 
 	}
 
-	public boolean generateFile() { // returns true if the file was created successfully, or exists already.
+	public static boolean generateFile() { // @return True if file operation does not throw IOException.
 		try {
-			File FS = new File(Appdata + "\\PalindromeGame");
+			File FS = core.Install.getStorageFile();
 			Element docRoot = new Element("Root");
+
 			Document doc = new Document(docRoot);
 			XMLOutputter xmlOut = new XMLOutputter();
 			xmlOut.setFormat(Format.getPrettyFormat());
@@ -60,5 +59,15 @@ public class FileHandler {
 
 	private void reflowTree() {
 
+	}
+
+	public void outputToFile() {
+		try {
+			FileOutputStream fs = new FileOutputStream(core.Install.getStorageFile());
+			XMLOutputter xml = new XMLOutputter();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

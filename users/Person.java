@@ -2,13 +2,20 @@ package users;
 
 import java.util.Random;
 
+import org.jdom2.Element;
+
+import communications.FileHandler;
+
 public class Person {
-	public Person(String UN, String PW) {
+	UserTypes self;
+
+	public Person(String UN, String PW, UserTypes ut) {
 		setUN(UN);
 		setUUID();
 		pwHash = hashPW(PW);
+		self = ut;
 	}
-	
+
 	public Person() {
 		// TODO Auto-generated constructor stub
 	}
@@ -17,7 +24,7 @@ public class Person {
 		Person temp = new Person();
 		temp.setUN(UN);
 		temp.setUUID();
-		temp.pwHash=temp.hashPW(PW);
+		temp.pwHash = temp.hashPW(PW);
 		return temp;
 	}
 
@@ -28,6 +35,15 @@ public class Person {
 
 	private void setUN(String username) {
 		this.username = username;
+	}
+
+	public Element getIDElement() {
+		Element UID = new Element("UID").addContent(Long.toString(this.UID));
+		UID.addContent(new Element("PWHash").addContent(Long.toString(this.pwHash)));
+		UID.addContent(new Element("salt").addContent(Long.toString(this.salt)));
+		UID.addContent(new Element("Username").addContent(this.username));
+		UID.addContent(new Element("Other").addContent(new Element("Type").addContent(this.self.name())));
+		return UID;
 	}
 
 	public long hashPW(String pass) {
@@ -42,7 +58,7 @@ public class Person {
 
 	private void setSalt() {
 		Random r = new Random();
-		this.salt = r.nextLong();	
+		this.salt = r.nextLong();
 	}
 
 	private void setUUID() {
@@ -54,11 +70,14 @@ public class Person {
 		return this.UID;
 	}
 
-	public Boolean validateLogin(String PW) {
+	private Boolean validatePassword(String PW) {
 		long storage = (PW + Long.toString(salt)).hashCode();
 		if (storage == pwHash) {
 			return true;
 		} else
 			return false;
+	}
+	public static  login(long UID, String PW) {
+		
 	}
 }
