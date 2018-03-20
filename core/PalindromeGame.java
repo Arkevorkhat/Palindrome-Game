@@ -10,8 +10,6 @@ public class PalindromeGame {
 	 * TODO: create main method logic.
 	 */
 	public static void main(String[] args) {
-		String.valueOf(Integer.MAX_VALUE);
-		String foo = new String("Bar");
-		foo.length();
+		Install.flowDirs();
 	}
 }

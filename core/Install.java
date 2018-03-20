@@ -1,20 +1,28 @@
 package core;
+
 import java.io.*;
 
+import javax.swing.filechooser.FileSystemView;
+
 public class Install {
+	public static String PATH = FileSystemView.getFileSystemView().getHomeDirectory().getAbsolutePath();
+	private static File storage = new File(PATH + File.separatorChar + ".palindromeGame" + File.separatorChar + "storage.xml");
 	public static void flowDirs() {
-		String PATH = System.getProperty("user.dir");
-		File messages = new File(PATH+File.pathSeparator+"files");
-		File users = new File(PATH+File.pathSeparator+"files");
-		System.out.println(messages.getAbsoluteFile());
-		System.out.println(users.getAbsoluteFile());
 		try {
-			messages.getParentFile().mkdirs();
-			users.getParentFile().mkdirs();
-			System.out.println(messages.createNewFile());
-			System.out.println(users.createNewFile());
+			if (storage.getAbsoluteFile().getParentFile().mkdirs()) {
+				storage.createNewFile();
+			}
+			else {
+				System.out.println("Path Already Exists.");
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	public static File getStorageFile() {
+		return storage;
+	}
+	public static String getStorage() {
+		return storage.getPath();
 	}
 }
