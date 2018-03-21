@@ -2,9 +2,11 @@ package users;
 
 import java.util.Random;
 
+import org.jdom2.Document;
 import org.jdom2.Element;
 
 import communications.FileHandler;
+import core.Session;
 
 public class Person {
 	UserTypes self;
@@ -77,7 +79,9 @@ public class Person {
 		} else
 			return false;
 	}
-	public static  login(long UID, String PW) {
+	public static Session login(long UID, String PW) {
+		Document storage = communications.FileHandler.getDoc();
+		Element user = storage.getContent((int)UID);
 		
 	}
 }
