@@ -1,8 +1,10 @@
 package communications;
 
+import java.io.Serializable;
+
 import users.Person;
 
-public class Message extends CommLink {
+public class Message extends CommLink implements Serializable {
 	private String msg;
 	private long senderUID;
 	private long recipientUID;

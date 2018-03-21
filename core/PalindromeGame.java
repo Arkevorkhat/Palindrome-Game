@@ -10,6 +10,7 @@ public class PalindromeGame {
 	 * TODO: create main method logic.
 	 */
 	public static void main(String[] args) {
-		Install.flowDirs();
+		FileHandler.init();
+		FileHandler.serialDump();
 	}
 }

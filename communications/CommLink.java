@@ -1,35 +1,19 @@
 package communications;
 
+import java.util.HashSet;
 import java.util.Random;
-import org.jdom2.*;
-import org.jdom2.output.*;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-public class CommLink{
+import users.*;
 
+public class CommLink {
+	public static HashSet<Child> children;
+	public static HashSet<Parent> parents;
+	public static HashSet<Teacher> teachers;
+	public static HashSet<Message> messages;
 	public long lastID;
 
 	public void init() {
 		Random r = new Random();
 		lastID = r.nextLong();
 	}
-
-	/*
-	 * TODO: Finish Writing Top-Level File Handling Routines.
-	 *	When writing a parsing method, ensure that you use Try/Catch in order to handle nullPointerException, as that is required with this single-file structure.
-	 * XML Formatted as:
-	 * Root
-	 * 		ID
-	 * 			Username
-	 * 			[PasswordHash]
-	 * 			[Message]
-	 * 			[Salt]
-	 * 			[UID]
-	 * 			[Difficulty]
-	 * 			[GradeLevel]
-	 * 			[SenderID]
-	 */
-	
 }

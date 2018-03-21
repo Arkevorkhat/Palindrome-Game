@@ -28,5 +28,8 @@ public class Teacher extends Adult implements iMSG {
 	public void setClassID(long classID) {
 		ClassID = classID;
 	}
+	public void addToSet() {
+		communications.CommLink.teachers.add(this);
+	}
 
 }

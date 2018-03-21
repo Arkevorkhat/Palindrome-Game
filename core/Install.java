@@ -6,7 +6,7 @@ import javax.swing.filechooser.FileSystemView;
 
 public class Install {
 	public static String PATH = FileSystemView.getFileSystemView().getHomeDirectory().getAbsolutePath();
-	private static File storage = new File(PATH + File.separatorChar + ".palindromeGame" + File.separatorChar + "storage.xml");
+	private static File storage = new File(PATH + File.separatorChar + ".palindromeGame" + File.separatorChar + "storage");
 	public static void flowDirs() {
 		try {
 			if (storage.getAbsoluteFile().getParentFile().mkdirs()) {
