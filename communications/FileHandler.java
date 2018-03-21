@@ -1,14 +1,15 @@
 package communications;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.HashSet;
 
+import communications.CommLink;
 import javax.swing.filechooser.FileSystemView;
-
-import com.sun.imageio.spi.OutputStreamImageOutputStreamSpi;
 
 public class FileHandler {
 	public static File mainFile = new File(FileSystemView.getFileSystemView().getHomeDirectory().getAbsolutePath()
@@ -65,11 +66,26 @@ public class FileHandler {
 			outs[2].writeObject(CommLink.teachers);
 			outs[3].writeObject(CommLink.messages);
 			return true;
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 			return false;
 		}
-		
+
+	}
+
+	@SuppressWarnings({ "resource", "unchecked" })
+	public static void getHashMaps() {
+		try {
+			CommLink.children = (HashSet<users.Child>) new ObjectInputStream(new FileInputStream(children))
+					.readObject();
+			CommLink.parents = (HashSet<users.Parent>) new ObjectInputStream(new FileInputStream(parents)).readObject();
+			CommLink.teachers = (HashSet<users.Teacher>) new ObjectInputStream(new FileInputStream(teachers))
+					.readObject();
+			CommLink.messages = (HashSet<Message>) new ObjectInputStream(new FileInputStream(messages)).readObject();
+		} catch (ClassNotFoundException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
