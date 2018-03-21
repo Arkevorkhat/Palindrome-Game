@@ -4,7 +4,7 @@ import java.util.Random;
 
 import core.Session;
 
-public class Person {
+public class Person implements Serializable{
 	
 	public String username;
 	private long salt; // Yes, Salted Hashes, i know it's overkill.
