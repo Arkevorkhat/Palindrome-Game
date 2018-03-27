@@ -21,4 +21,4 @@ public class Child extends Person {
 	public void addToSet() {
 		communications.CommLink.children.add(this); //Add this class instance to the arrayList used for storing child objects.
 	}
-}
+}	

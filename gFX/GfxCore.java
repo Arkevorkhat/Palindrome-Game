@@ -11,5 +11,8 @@ public class GfxCore { //FIXME: Add citation for JDOM2 use as an interface eleme
 		String text = "Uses code from the JDOM project";
 		 	
 	}
-	JFrame CoreFrame;
+	public static JFrame CoreFrame = new JFrame();
+	public static void init() {
+		CoreFrame.setTitle(engine.Core._GAME_NAME);
+	}
 }

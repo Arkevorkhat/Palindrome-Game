@@ -3,7 +3,7 @@ package users;
 import java.io.Serializable;
 import java.util.Random;
 
-import core.Session;
+import backEnd.Session;
 
 public class Person implements Serializable {
 
