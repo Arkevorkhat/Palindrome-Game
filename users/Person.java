@@ -7,6 +7,10 @@ import core.Session;
 
 public class Person implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4062870041480934701L;
 	public String username;
 	private long salt; // Yes, Salted Hashes, i know it's overkill.
 	private long pwHash;

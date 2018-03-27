@@ -1,6 +1,7 @@
 package users;
 
 public class Child extends Person {
+	private static final long serialVersionUID = -4062870041480934701L;
 	int currDifficulty;   //Difficulty relates to the length of words that the child will be shown.
 	int currGradeLevel;   //Difficulty should not exceed 10*log10(GradeLevel)
 	int score;			  //Each successful identification will increase this number by one.

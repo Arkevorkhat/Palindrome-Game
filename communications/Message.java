@@ -5,6 +5,10 @@ import java.io.Serializable;
 import users.Person;
 
 public class Message extends CommLink implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String msg;
 	private long senderUID;
 	private long recipientUID;

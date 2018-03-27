@@ -57,6 +57,7 @@ public class FileHandler {
 	public static File teachers = new File(mainFile.getAbsolutePath() + "3.pg");
 	public static File messages = new File(mainFile.getAbsolutePath() + "4.pg");
 
+	@SuppressWarnings("resource")
 	public static ObjectOutputStream[] getStreams() { //this code returns a set of object output streams that allow for serialization of arrayList objects containing user data.
 		try {
 			ObjectOutputStream[] output = { new ObjectOutputStream(new FileOutputStream(children)),

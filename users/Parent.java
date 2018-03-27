@@ -8,6 +8,10 @@ import communications.Message.iMSG;
 
 public class Parent extends Adult implements iMSG, Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4062870041480934701L;
 	public Parent(String UN, String PW, ArrayList<Child> children) {
 		super(UN, PW, children);
 	}
