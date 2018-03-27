@@ -5,6 +5,7 @@ public class Child extends Person {
 	int currDifficulty;   //Difficulty relates to the length of words that the child will be shown.
 	int currGradeLevel;   //Difficulty should not exceed 10*log10(GradeLevel)
 	int score;			  //Each successful identification will increase this number by one.
+	private Parent[] parents;
 	public Child(String UN, String PW, int curDifficulty, int gradeLevel) {
 		super(UN, PW);
 		currDifficulty = curDifficulty;
@@ -20,5 +21,8 @@ public class Child extends Person {
 	}
 	public void addToSet() {
 		communications.CommLink.children.add(this); //Add this class instance to the arrayList used for storing child objects.
+	}
+	public void setParents(Parent[] input) {
+		this.parents=input;
 	}
 }	
