@@ -1,35 +1,25 @@
 package users;
+import java.util.ArrayList;
+
 import communications.Message;
 import communications.Message.iMSG;
-public class Teacher extends Adult implements iMSG {
-	private long ClassID;
-	public Teacher(String UN, String PW, Child[] chldrn, long CID) {
+public class Teacher extends Adult implements iMSG { //TODO: Finish iMSG implementation
+	public Teacher(String UN, String PW, ArrayList<Child> chldrn, long CID) {
 		super(UN, PW, chldrn);
-		setClassID(CID);
 	}
-	@Override
 	public Boolean sendMessage(String Message, Person recipient) {
 		
 		return null;
 	}
-	@Override
 	public Message[] getMessages() {
 		
 		return null;
 	}
-	@Override
 	public Boolean broadcastMessage(String Message) {
 		
 		return null;
 	}
-	public long getClassID() {
-		return ClassID;
-	}
-	public void setClassID(long classID) {
-		ClassID = classID;
-	}
 	public void addToSet() {
 		communications.CommLink.teachers.add(this);
 	}
-
 }

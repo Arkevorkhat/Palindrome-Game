@@ -1,5 +1,4 @@
 package backEnd;
-import core.Session;
-public class Login {
+public class Login { //TODO: Create login sequence and implement session creation.
 	
 }

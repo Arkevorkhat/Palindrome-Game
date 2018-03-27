@@ -27,4 +27,11 @@ public class Message extends CommLink implements Serializable {
 		public Message[] getMessages();
 		public Boolean broadcastMessage(String Message);
 	}
+	public long getRecUID() {
+		return this.recipientUID;
+	}
+	@Override
+	public void init() {
+		
+	}
 }

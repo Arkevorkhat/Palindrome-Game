@@ -1,14 +1,15 @@
 package users;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import communications.Message;
 import communications.Message.iMSG;
 
 public class Parent extends Adult implements iMSG, Serializable{
 
-	public Parent(String UN, String PW, Child[] chldrn) {
-		super(UN, PW, chldrn);
+	public Parent(String UN, String PW, ArrayList<Child> children) {
+		super(UN, PW, children);
 	}
 
 	@Override

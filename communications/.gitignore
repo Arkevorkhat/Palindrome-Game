@@ -4,3 +4,5 @@
 /Message.class
 /StorFileIO.class
 /FileHandler$streams.class
+/CommLink$objHandler.class
+/ObjHandler.class

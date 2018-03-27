@@ -6,16 +6,32 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.HashSet;
-
+import java.util.ArrayList;
 import communications.CommLink;
+import users.Child;
+import users.Parent;
+import users.Teacher;
+
 import javax.swing.filechooser.FileSystemView;
 
 public class FileHandler {
 	public static File mainFile = new File(FileSystemView.getFileSystemView().getHomeDirectory().getAbsolutePath()
 			+ File.separatorChar + ".PalindromeGame");
+	/*
+	 * The above code requires a bit of explaining.
+	 * FileSystemView allows for source-level access to the computer's filesystem.
+	 * getFileSystemView().getHomeDirectory().getAbsolutePath() will give back:
+	 * Linux: ~/home
+	 * MacOS: ~/users/<Your Username>
+	 * Windows: Inconsistent, but often C:/users/<Your Username>/desktop
+	 * More obscure operating systems may store files in other locations.
+	 * 
+	 * Linux DirPath: ~/home/.PalindromeGame
+	 * MacOS DirPath: ~/users/<Your Username>/.PalindromeGame
+	 * Windows DirPath: C:/users/<Your Username>/desktop/.PalindromeGame
+	 */
 
-	public static void init() {
+	public static void init() { //ensures that all file system locations are present.
 		System.out.println(mainFile.getParentFile().mkdirs());
 		System.out.println(mainFile);
 		try {
@@ -36,16 +52,12 @@ public class FileHandler {
 		}
 	}
 
-	public static File children = new File(mainFile.getAbsolutePath() + "1.pg");
+	public static File children = new File(mainFile.getAbsolutePath() + "1.pg"); //the .pg filetype is a serialized bytestream containing the ArrayList object that contains the relevant users.
 	public static File parents = new File(mainFile.getAbsolutePath() + "2.pg");
 	public static File teachers = new File(mainFile.getAbsolutePath() + "3.pg");
 	public static File messages = new File(mainFile.getAbsolutePath() + "4.pg");
 
-	public static enum streams {
-		CHILDREN, PARENTS, TEACHERS, MESSAGES
-	}
-
-	public static ObjectOutputStream[] getStreams() {
+	public static ObjectOutputStream[] getStreams() { //this code returns a set of object output streams that allow for serialization of arrayList objects containing user data.
 		try {
 			ObjectOutputStream[] output = { new ObjectOutputStream(new FileOutputStream(children)),
 					new ObjectOutputStream(new FileOutputStream(parents)),
@@ -58,7 +70,7 @@ public class FileHandler {
 		}
 	}
 
-	public static boolean serialDump() {
+	public static boolean serialDump() { //puts all of the arrayLists out to their respective files.
 		ObjectOutputStream[] outs = getStreams();
 		try {
 			outs[0].writeObject(CommLink.children);
@@ -75,16 +87,15 @@ public class FileHandler {
 	}
 
 	@SuppressWarnings({ "resource", "unchecked" })
-	public static void getHashMaps() {
+	public static void getArrayLists() throws ClassNotFoundException {
 		try {
-			CommLink.children = (HashSet<users.Child>) new ObjectInputStream(new FileInputStream(children))
+			CommLink.children = (ArrayList<Child>) new ObjectInputStream(new FileInputStream(children))
 					.readObject();
-			CommLink.parents = (HashSet<users.Parent>) new ObjectInputStream(new FileInputStream(parents)).readObject();
-			CommLink.teachers = (HashSet<users.Teacher>) new ObjectInputStream(new FileInputStream(teachers))
+			CommLink.parents = (ArrayList<Parent>) new ObjectInputStream(new FileInputStream(parents)).readObject();
+			CommLink.teachers = (ArrayList<Teacher>) new ObjectInputStream(new FileInputStream(teachers))
 					.readObject();
-			CommLink.messages = (HashSet<Message>) new ObjectInputStream(new FileInputStream(messages)).readObject();
-		} catch (ClassNotFoundException | IOException e) {
-			// TODO Auto-generated catch block
+			CommLink.messages = (ArrayList<Message>) new ObjectInputStream(new FileInputStream(messages)).readObject();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
