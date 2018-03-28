@@ -38,4 +38,7 @@ public class Message extends CommLink implements Serializable {
 	public void init() {
 		
 	}
+	public void addToList() {
+		CommLink.messages.add(this);
+	}
 }
