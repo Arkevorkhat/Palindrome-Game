@@ -6,7 +6,7 @@ import communications.FileHandler;
  * Todos are closed by replacing "todo" with TO DO.
  */
 public class Core {
-	public static final String _VERSION = "0.13.0";
+	public static final String _VERSION = "0.14.1";
 	public static final String _GAME_NAME = "Palindrome";
 
 	/*

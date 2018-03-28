@@ -2,10 +2,11 @@ package users;
 
 import javax.swing.JOptionPane;
 
+import communications.CommLink;
 import communications.CommLink.listable;
 import communications.Message;
 
-public class Student extends Person implements listable{
+public class Student extends Person implements listable<Student>{
 	private static final long serialVersionUID = -4062870041480934701L;
 	int currDifficulty;   //Difficulty relates to the length of words that the child will be shown.
 	int currGradeLevel;   //Difficulty should not exceed 10*logn(GradeLevel)
@@ -36,6 +37,20 @@ public class Student extends Person implements listable{
 	public void sendMessage() {
 		Parent chosen = (Parent) JOptionPane.showInputDialog(null, "Who do you want to send this to?", "Send Message", JOptionPane.DEFAULT_OPTION, null, this.parents, this.parents[0]);
 		String MessageText = JOptionPane.showInputDialog("What would you like to say?");
-		new Message(MessageText, this.getUUID(), chosen.getUUID()).addToSet();
+		try {
+			new Message(MessageText, this.getUUID(), chosen.getUUID()).addToSet();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+	}
+	@Override
+	public Student getFromSet(Long ID) throws IllegalArgumentException {
+		for (Student i : CommLink.students) {
+			if (i.getUUID()==ID) {
+				return i;
+			}
+			else continue;
+		}
+		throw new IllegalArgumentException();
 	}
 }	

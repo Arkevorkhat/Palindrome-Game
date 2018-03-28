@@ -3,20 +3,8 @@ package communications;
 import java.io.Serializable;
 
 import communications.CommLink.listable;
-import users.Person;
 
-public class Message implements Serializable, listable {
-	public interface iMSG {
-		public Boolean sendMessage(String Message, Person recipient);
-
-		public Message[] getMessages();
-
-		public Boolean broadcastMessage(String Message);
-	}
-
-	/**
-	 * 
-	 */
+public class Message implements Serializable, listable<Message> {
 	private static final long serialVersionUID = 1L;
 	private String msg;
 	private long senderUID;
@@ -40,7 +28,26 @@ public class Message implements Serializable, listable {
 		return this.recipientUID;
 	}
 
-	public void addToSet() {
-		CommLink.messages.add(this);
+	public void addToSet() throws IllegalAccessException {
+		if (CommLink.messages.add(this)) {
+		} else
+			throw new IllegalAccessException();
+	}
+
+	@Override
+	public Message getFromSet(Long ID) throws IllegalArgumentException {
+		for (Message i : CommLink.messages) {
+			if (i.getRecUID() == ID) {
+				CommLink.messages.remove(i);
+				return i;
+			} else
+				continue;
+
+		}
+		throw new IllegalArgumentException();
+	}
+
+	public boolean exists() {
+		return true;
 	}
 }

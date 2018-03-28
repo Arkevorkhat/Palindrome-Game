@@ -18,20 +18,19 @@ public class FileHandler {
 	public static File mainFile = new File(FileSystemView.getFileSystemView().getHomeDirectory().getAbsolutePath()
 			+ File.separatorChar + ".PalindromeGame");
 	/*
-	 * The above code requires a bit of explaining.
-	 * FileSystemView allows for source-level access to the computer's filesystem.
+	 * The above code requires a bit of explaining. FileSystemView allows for
+	 * source-level access to the computer's filesystem.
 	 * getFileSystemView().getHomeDirectory().getAbsolutePath() will give back:
-	 * Linux: ~/home
-	 * MacOS: ~/users/<Your Username>
-	 * Windows: Inconsistent, but often C:/users/<Your Username>/desktop
-	 * More obscure operating systems may store files in other locations.
+	 * Linux: ~/home MacOS: ~/users/<Your Username> Windows: Inconsistent, but often
+	 * C:/users/<Your Username>/desktop More obscure operating systems may store
+	 * files in other locations.
 	 * 
-	 * Linux DirPath: ~/home/.PalindromeGame
-	 * MacOS DirPath: ~/users/<Your Username>/.PalindromeGame
-	 * Windows DirPath: C:/users/<Your Username>/desktop/.PalindromeGame
+	 * Linux DirPath: ~/home/.PalindromeGame 
+	 * MacOS DirPath: ~/users/<YourUsername>/.PalindromeGame 
+	 * Windows DirPath: C:/users/<YourUsername>/desktop/.PalindromeGame
 	 */
 
-	public static void init() { //ensures that all file system locations are present.
+	public static void init() { // ensures that all file system locations are present.
 		System.out.println(mainFile.getParentFile().mkdirs());
 		System.out.println(mainFile);
 		try {
@@ -52,13 +51,14 @@ public class FileHandler {
 		}
 	}
 
-	public static File children = new File(mainFile.getAbsolutePath() + "1.pg"); //the .pg filetype is a serialized bytestream containing the ArrayList object that contains the relevant users.
-	public static File parents = new File(mainFile.getAbsolutePath() + "2.pg");
-	public static File teachers = new File(mainFile.getAbsolutePath() + "3.pg");
-	public static File messages = new File(mainFile.getAbsolutePath() + "4.pg");
+	public static File children = new File(mainFile.getAbsolutePath() + "1.g"); // the .g filetype is a serialized bytestream containing the ArrayList object that contains the relevant users.
+	public static File parents = new File(mainFile.getAbsolutePath() + "2.g");
+	public static File teachers = new File(mainFile.getAbsolutePath() + "3.g");
+	public static File messages = new File(mainFile.getAbsolutePath() + "4.g");
 
 	@SuppressWarnings("resource")
-	public static ObjectOutputStream[] getStreams() { //this code returns a set of object output streams that allow for serialization of arrayList objects containing user data.
+	public static ObjectOutputStream[] getStreams() { // this code returns a set of object output streams that allow for
+														// serialization of arrayList objects containing user data.
 		try {
 			ObjectOutputStream[] output = { new ObjectOutputStream(new FileOutputStream(children)),
 					new ObjectOutputStream(new FileOutputStream(parents)),
@@ -66,12 +66,12 @@ public class FileHandler {
 					new ObjectOutputStream(new FileOutputStream(messages)) };
 			return output;
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
-			return null;
+			init();
+			return getStreams();
 		}
 	}
 
-	public static boolean serialDump() { //puts all of the arrayLists out to their respective files.
+	public static boolean serialDump() { // puts all of the arrayLists out to their respective files.
 		ObjectOutputStream[] outs = getStreams();
 		try {
 			outs[0].writeObject(CommLink.students);
@@ -88,16 +88,16 @@ public class FileHandler {
 	}
 
 	@SuppressWarnings({ "resource", "unchecked" })
-	public static void getArrayLists() throws ClassNotFoundException {
+	public static void getArrayLists() {
 		try {
-			CommLink.students = (ArrayList<Student>) new ObjectInputStream(new FileInputStream(children))
-					.readObject();
-			CommLink.parents = (ArrayList<Parent>) new ObjectInputStream(new FileInputStream(parents)).readObject();
-			CommLink.teachers = (ArrayList<Teacher>) new ObjectInputStream(new FileInputStream(teachers))
-					.readObject();
+			CommLink.students = (ArrayList<Student>) new ObjectInputStream(new FileInputStream(children)).readObject();
+			CommLink.parents  = (ArrayList<Parent>)  new ObjectInputStream(new FileInputStream (parents)).readObject();
+			CommLink.teachers = (ArrayList<Teacher>) new ObjectInputStream(new FileInputStream(teachers)).readObject();
 			CommLink.messages = (ArrayList<Message>) new ObjectInputStream(new FileInputStream(messages)).readObject();
 		} catch (IOException e) {
-			e.printStackTrace();
+			init();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace(System.err);
 		}
 	}
 }

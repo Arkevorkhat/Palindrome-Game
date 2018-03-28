@@ -8,9 +8,11 @@ public abstract class CommLink {
 	public static ArrayList<Parent> parents;
 	public static ArrayList<Teacher> teachers;
 	public static ArrayList<Message> messages;
+
 	public abstract void init();
-	public interface listable{
-		public void addToSet();
-		
+
+	public static interface listable<T> {
+		public void addToSet() throws IllegalAccessException;
+		public T getFromSet(Long ID) throws IllegalArgumentException;
 	}
 }

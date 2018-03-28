@@ -9,10 +9,9 @@ import javax.swing.JOptionPane;
 import backEnd.Login;
 import backEnd.Session;
 import communications.CommLink;
-import communications.CommLink.listable;
 import communications.Message;
 
-public class Person implements Serializable, listable {
+public class Person implements Serializable {
 
 	/**
 	 * 
@@ -34,7 +33,9 @@ public class Person implements Serializable, listable {
 
 	public Person() {
 	}
-
+	public boolean exists() {
+		return true;
+	}
 	public Message[] getMessages() throws NoSuchElementException {
 		Message[] storage = {};
 		int j = 0;
@@ -140,10 +141,5 @@ public class Person implements Serializable, listable {
 			}
 		}
 		throw new IllegalArgumentException();
-	}
-
-	@Override
-	public void addToSet(){
-		System.err.print("There's nowhere to put this.");
 	}
 }

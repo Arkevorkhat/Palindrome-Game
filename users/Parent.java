@@ -1,9 +1,11 @@
 package users;
 
 import java.io.Serializable;
+
+import communications.CommLink;
 import communications.CommLink.listable;
 
-public class Parent extends Adult implements Serializable, listable {
+public class Parent extends Adult implements Serializable, listable<Parent> {
 	private static final long serialVersionUID = -4062870041480934701L;
 
 	public Parent(String UN, String PW, Student[] children) {
@@ -18,5 +20,15 @@ public class Parent extends Adult implements Serializable, listable {
 
 	public void addToSet() {
 		communications.CommLink.parents.add(this);
+	}
+
+	@Override
+	public Parent getFromSet(Long ID) throws IllegalArgumentException {
+		for(Parent i : CommLink.parents) {
+			if( i.getUUID()==ID) {
+				return i;
+			}
+		}
+		throw new IllegalArgumentException();
 	}
 }
