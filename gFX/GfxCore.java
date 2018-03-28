@@ -3,7 +3,7 @@ import java.awt.Component;
 
 import javax.swing.JFrame;
 
-public class GfxCore { //FIXME: Add citation for JDOM2 use as an interface element,
+public class GfxCore {
 	@Deprecated
 	class jDOMCite extends Component{
 		

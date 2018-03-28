@@ -1,11 +1,18 @@
 package users;
 
 import java.io.Serializable;
+import java.util.NoSuchElementException;
 import java.util.Random;
 
-import backEnd.Session;
+import javax.swing.JOptionPane;
 
-public class Person implements Serializable {
+import backEnd.Login;
+import backEnd.Session;
+import communications.CommLink;
+import communications.CommLink.listable;
+import communications.Message;
+
+public class Person implements Serializable, listable {
 
 	/**
 	 * 
@@ -17,7 +24,7 @@ public class Person implements Serializable {
 	private long UID;
 	private Session sess;
 	private long ClassID; // allows for associating a person with a particular class group, without
-							// instatiating a Class object, as such a thing would be... untenable.
+							// instantiating a Class object, as such a thing would be... untenable.
 
 	public Person(String UN, String PW) {
 		setUN(UN);
@@ -27,8 +34,27 @@ public class Person implements Serializable {
 
 	public Person() {
 	}
+
+	public Message[] getMessages() throws NoSuchElementException {
+		Message[] storage = {};
+		int j = 0;
+		for (Message i : CommLink.messages) {
+			if (i.getRecUID() == this.getUUID()) {
+				storage[j++] = i;
+			}
+		}
+		if (j > 0) {
+			return storage;
+		} else
+			throw new NoSuchElementException();
+	}
+
+	public Boolean sendMessage(String Message, Person recipient) {
+		return null;
+	}
+
 	@Deprecated
-	public static Person makePerson(String UN, String PW) { // this really needs to just be a constructor. 
+	public static Person makePerson(String UN, String PW) { // this really needs to just be a constructor.
 		Person temp = new Person();
 		temp.setUN(UN);
 		temp.setUUID();
@@ -70,7 +96,7 @@ public class Person implements Serializable {
 		return this.UID;
 	}
 
-	public long getHash() {
+	public long getPWHash() {
 		return this.pwHash;
 	}
 
@@ -88,5 +114,36 @@ public class Person implements Serializable {
 
 	public void setClassID(long classID) {
 		ClassID = classID;
+	}
+
+	public void resetPassword() {
+		String oldPass = JOptionPane.showInputDialog("What was your old password?");
+		if (Login.checkPassword(this, oldPass) == true) {
+			this.pwHash = this.hashPW(JOptionPane.showInputDialog("What would you like your new password to be?"));
+		}
+	}
+
+	public static Person findPersonByName(String Username) throws IllegalArgumentException {
+		for (Student i : CommLink.students) {
+			if (i.username.equals(Username)) {
+				return i;
+			}
+		}
+		for (Parent i : CommLink.parents) {
+			if (i.username.equals(Username)) {
+				return i;
+			}
+		}
+		for (Teacher i : CommLink.teachers) {
+			if (i.username.equals(Username)) {
+				return i;
+			}
+		}
+		throw new IllegalArgumentException();
+	}
+
+	@Override
+	public void addToSet(){
+		System.err.print("There's nowhere to put this.");
 	}
 }

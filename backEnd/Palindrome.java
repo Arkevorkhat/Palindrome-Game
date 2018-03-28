@@ -4,7 +4,7 @@ import java.util.Random;
 
 public final class Palindrome {
 	/*
-	 * TODO: Discuss this file, finalize palindrome logic class.
+	 * 
 	 */
 	public static String reverse(String input) { //required for correct function of the check and make palindrome methods.
 		StringBuffer in = new StringBuffer(input);

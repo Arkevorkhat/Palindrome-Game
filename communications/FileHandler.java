@@ -8,7 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import communications.CommLink;
-import users.Child;
+import users.Student;
 import users.Parent;
 import users.Teacher;
 
@@ -74,7 +74,7 @@ public class FileHandler {
 	public static boolean serialDump() { //puts all of the arrayLists out to their respective files.
 		ObjectOutputStream[] outs = getStreams();
 		try {
-			outs[0].writeObject(CommLink.children);
+			outs[0].writeObject(CommLink.students);
 			outs[1].writeObject(CommLink.parents);
 			outs[2].writeObject(CommLink.teachers);
 			outs[3].writeObject(CommLink.messages);
@@ -90,7 +90,7 @@ public class FileHandler {
 	@SuppressWarnings({ "resource", "unchecked" })
 	public static void getArrayLists() throws ClassNotFoundException {
 		try {
-			CommLink.children = (ArrayList<Child>) new ObjectInputStream(new FileInputStream(children))
+			CommLink.students = (ArrayList<Student>) new ObjectInputStream(new FileInputStream(children))
 					.readObject();
 			CommLink.parents = (ArrayList<Parent>) new ObjectInputStream(new FileInputStream(parents)).readObject();
 			CommLink.teachers = (ArrayList<Teacher>) new ObjectInputStream(new FileInputStream(teachers))
