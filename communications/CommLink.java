@@ -9,4 +9,8 @@ public abstract class CommLink {
 	public static ArrayList<Teacher> teachers;
 	public static ArrayList<Message> messages;
 	public abstract void init();
+	public interface listable{
+		public void addToSet();
+		
+	}
 }

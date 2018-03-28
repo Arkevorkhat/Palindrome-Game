@@ -1,6 +1,11 @@
 package users;
 
-public class Child extends Person {
+import javax.swing.JOptionPane;
+
+import communications.CommLink.listable;
+import communications.Message;
+
+public class Child extends Person implements listable{
 	private static final long serialVersionUID = -4062870041480934701L;
 	int currDifficulty;   //Difficulty relates to the length of words that the child will be shown.
 	int currGradeLevel;   //Difficulty should not exceed 10*log10(GradeLevel)
@@ -24,5 +29,13 @@ public class Child extends Person {
 	}
 	public void setParents(Parent[] input) {
 		this.parents=input;
+	}
+	public Parent[] getParents() {
+		return this.parents;
+	}
+	public void sendMessage() {
+		Parent chosen = (Parent) JOptionPane.showInputDialog(null, "Who do you want to send this to?", "Send Message", JOptionPane.DEFAULT_OPTION, null, this.parents, this.parents[0]);
+		String MessageText = JOptionPane.showInputDialog("What would you like to say?");
+		new Message(MessageText, this.getUUID(), chosen.getUUID()).addToSet();
 	}
 }	

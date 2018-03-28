@@ -1,9 +1,10 @@
 package users;
 import java.util.ArrayList;
 
+import communications.CommLink.listable;
 import communications.Message;
 import communications.Message.iMSG;
-public class Teacher extends Adult implements iMSG { //TODO: Finish iMSG implementation
+public class Teacher extends Adult implements iMSG, listable { //TODO: Finish iMSG implementation
 	private static final long serialVersionUID = -4062870041480934701L;
 	public Teacher(String UN, String PW, ArrayList<Child> chldrn, long CID) {
 		super(UN, PW, chldrn);
