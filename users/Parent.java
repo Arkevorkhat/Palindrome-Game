@@ -23,7 +23,7 @@ public class Parent extends Adult implements Serializable, listable<Parent> {
 	}
 
 	@Override
-	public Parent getFromSet(Long ID) throws IllegalArgumentException {
+	public Parent getFromSet(long ID) throws IllegalArgumentException {
 		for(Parent i : CommLink.parents) {
 			if( i.getUUID()==ID) {
 				return i;

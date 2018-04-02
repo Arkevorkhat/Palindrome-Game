@@ -44,7 +44,7 @@ public class Student extends Person implements listable<Student>{
 		}
 	}
 	@Override
-	public Student getFromSet(Long ID) throws IllegalArgumentException {
+	public Student getFromSet(long ID) throws IllegalArgumentException {
 		for (Student i : CommLink.students) {
 			if (i.getUUID()==ID) {
 				return i;

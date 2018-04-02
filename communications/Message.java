@@ -35,7 +35,7 @@ public class Message implements Serializable, listable<Message> {
 	}
 
 	@Override
-	public Message getFromSet(Long ID) throws IllegalArgumentException {
+	public Message getFromSet(long ID) throws IllegalArgumentException {
 		for (Message i : CommLink.messages) {
 			if (i.getRecUID() == ID) {
 				CommLink.messages.remove(i);

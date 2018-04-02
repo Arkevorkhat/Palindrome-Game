@@ -1,5 +1,6 @@
 package users;
 import communications.CommLink.listable;
+import communications.CommLink;
 import communications.Message;
 public class Teacher extends Adult implements listable<Teacher> { 
 	private static final long serialVersionUID = -4062870041480934701L;
@@ -19,16 +20,26 @@ public class Teacher extends Adult implements listable<Teacher> {
 		
 		return null;
 	}
-	public Boolean broadcastMessage(String Message) {
-		return null;
-		
+	public Boolean broadcastMessage(String message) {
+		for(Student i : CommLink.students) {
+			try {
+				new Message(message,i.getUUID(),this.getUUID()).addToSet();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 	public void addToSet() {
 		communications.CommLink.teachers.add(this);
 	}
 	@Override
-	public Teacher getFromSet(Long ID) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		return null;
+	public Teacher getFromSet(long ID) throws IllegalArgumentException {
+		for (Teacher i : CommLink.teachers) {
+			if(i.getUUID()==ID) {
+				return i;
+			}
+		}
+		throw new IllegalArgumentException();
 	}
 }
