@@ -6,6 +6,9 @@ public class Adult extends Person{
 	public Adult(String UN, String PW, Student[] children) {
 		super(UN, PW);
 		this.children = children;
+	}
+	public static void register() {
+		// TODO Auto-generated method stub
 	}	
 	
 }

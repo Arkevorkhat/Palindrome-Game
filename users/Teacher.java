@@ -2,8 +2,6 @@ package users;
 
 import communications.CommLink.listable;
 
-import java.util.ArrayList;
-
 import communications.CommLink;
 import communications.Message;
 
@@ -22,7 +20,7 @@ public class Teacher extends Adult implements listable<Teacher> {
 			e.printStackTrace();
 		}
 		return true;
-	}	
+	}
 
 	public Boolean broadcastMessage(String message) {
 		try {

@@ -49,7 +49,7 @@ public class Login { // TODO: Create login sequence and implement session creati
 			throw new IllegalArgumentException();
 		}
 	}
-
+	
 	public static void register() {
 		Object[] uType = { "Student", "Parent", "Teacher" };
 		String chosen = (String) JOptionPane.showInputDialog((Component) null,
