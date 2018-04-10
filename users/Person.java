@@ -1,7 +1,7 @@
 package users;
 
 import java.io.Serializable;
-import java.util.NoSuchElementException;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JOptionPane;
@@ -36,7 +36,8 @@ public class Person implements Serializable {
 	public boolean exists() {
 		return true;
 	}
-	public Message[] getMessages() throws NoSuchElementException {
+	@Deprecated
+	/*public Message[] getMessages() throws NoSuchElementException {
 		Message[] storage = {};
 		int j = 0;
 		for (Message i : CommLink.messages) {
@@ -48,7 +49,7 @@ public class Person implements Serializable {
 			return storage;
 		} else
 			throw new NoSuchElementException();
-	}
+	}*/
 
 	public Boolean sendMessage(String Message, Person recipient) {
 		return null;
@@ -141,5 +142,15 @@ public class Person implements Serializable {
 			}
 		}
 		throw new IllegalArgumentException();
+	}
+	public Message[] getMessages() {
+		ArrayList<Message> Messages = new ArrayList<Message>();
+		for (Message m : CommLink.messages) {
+			if (m.getRecUID() == this.getUUID()) {
+				Messages.add(m);
+				CommLink.messages.remove(m);
+			}
+		}
+		return (Message[]) Messages.toArray();
 	}
 }
