@@ -1,5 +1,5 @@
-package users;
-import users.Student;
+package data;
+import data.Student;
 public class Adult extends Person{
 	private static final long serialVersionUID = -4062870041480934701L;
 	Student[] children;

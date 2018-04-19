@@ -8,9 +8,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import communications.CommLink;
-import users.Student;
-import users.Parent;
-import users.Teacher;
+import data.Parent;
+import data.Student;
+import data.Teacher;
 
 import javax.swing.filechooser.FileSystemView;
 

@@ -1,4 +1,4 @@
-package users;
+package data;
 import communications.CommLink.listable;
 import communications.CommLink;
 import communications.Message;

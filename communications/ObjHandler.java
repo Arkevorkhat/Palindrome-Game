@@ -1,11 +1,10 @@
 package communications;
 
-import users.Student;
-import users.Parent;
-import users.Teacher;
+import data.Parent;
+import data.Student;
+import data.Teacher;
 
 public class ObjHandler extends CommLink {
-	@Override
 	public void init() {
 		if (students.size()<1) {  //if there are no items in the arraylist
 			students.add(new Student("Alex Doe", "123456789", 100,13)); //add a default administrator account.

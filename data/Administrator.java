@@ -1,4 +1,4 @@
-package users;
+package data;
 
 public class Administrator extends Person {
 

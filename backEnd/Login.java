@@ -5,10 +5,10 @@ import java.time.temporal.TemporalField;
 
 import javax.swing.JOptionPane;
 
-import users.Student;
-import users.Parent;
-import users.Person;
-import users.Teacher;
+import data.Parent;
+import data.Person;
+import data.Student;
+import data.Teacher;
 
 public class Login { // TODO: Create login sequence and implement session creation.
 	public static Session logIn(String Username, String Password) {
