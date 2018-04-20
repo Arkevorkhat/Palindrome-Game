@@ -17,6 +17,7 @@ public class Person implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -4062870041480934701L;
+	public static long lastUID;
 	public String username;
 	private long salt; // Yes, Salted Hashes, i know it's overkill.
 	private long pwHash;
@@ -24,10 +25,9 @@ public class Person implements Serializable {
 	private Session sess;
 	private Group classGroup; // allows for associating a person with a particular class group, without
 								// instantiating a Class object, as such a thing would be... untenable.
-
 	public Person(String UN, String PW) {
 		setUN(UN);
-		setUUID();
+		UID=++lastUID;
 		pwHash = hashPW(PW);
 	}
 
@@ -53,7 +53,7 @@ public class Person implements Serializable {
 	public static Person makePerson(String UN, String PW) { // this really needs to just be a constructor.
 		Person temp = new Person();
 		temp.setUN(UN);
-		temp.setUUID();
+		//temp.setUUID();
 		temp.pwHash = temp.hashPW(PW);
 		return temp;
 	}
@@ -81,13 +81,6 @@ public class Person implements Serializable {
 		Random r = new Random();
 		this.salt = r.nextLong();
 	}
-
-	private void setUUID() { // this could reasonably be two lines inside of the constructor, however, this
-								// is how i chose to write the method.
-		Random r = new Random();
-		this.UID = r.nextLong();
-	}
-
 	public long getUUID() {
 		return this.UID;
 	}

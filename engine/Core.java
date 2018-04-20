@@ -1,13 +1,14 @@
 package engine;
 
-import communications.FileHandler;
+//import communications.FileHandler;
+import gFX.GfxCore;
 
 /*
  * Todos are closed by replacing "todo" with TO DO.
  */
 public class Core {
-	public static final String _VERSION = "0.14.1";
-	public static final String _GAME_NAME = "Palindrome";
+	public static final String _VERSION = "1.0.2";
+	public static final String _GAME_NAME = "NULL"; //FIXME: set game name.
 
 	/*
 	 * This file should contain ONLY the main method. all other methods should be
@@ -16,7 +17,8 @@ public class Core {
 	 * TODO: create main method logic.
 	 */
 	public static void main(String[] args) {
-		FileHandler.init();
-		FileHandler.serialDump();
+		//FileHandler.init();
+		//FileHandler.serialDump();
+		GfxCore.init();
 	}
 }

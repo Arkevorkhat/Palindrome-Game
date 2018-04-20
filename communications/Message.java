@@ -9,15 +9,21 @@ public class Message implements Serializable, listable<Message> {
 	private String msg;
 	private long senderUID;
 	private long recipientUID;
+	private long MID;
+	public static long lastMID;
 
 	public Message(String message, long UID, long UID2) { // UID: User IDentifier
 		msg = message;
 		senderUID = UID;
 		recipientUID = UID2;
+		MID = ++lastMID;
 	}
 
 	public String getMessage() {
 		return this.msg;
+	}
+	public long getMID() {
+		return this.MID;
 	}
 
 	public long getSenderUID() {

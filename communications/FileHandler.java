@@ -8,9 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import communications.CommLink;
-import data.Parent;
-import data.Student;
-import data.Teacher;
+import data.*;
 
 import javax.swing.filechooser.FileSystemView;
 
@@ -25,10 +23,19 @@ public class FileHandler {
 	 * C:/users/<Your Username>/desktop More obscure operating systems may store
 	 * files in other locations.
 	 * 
-	 * Linux DirPath: ~/home/.PalindromeGame 
-	 * MacOS DirPath: ~/users/<YourUsername>/.PalindromeGame 
-	 * Windows DirPath: C:/users/<YourUsername>/desktop/.PalindromeGame
+	 * Linux DirPath: ~/home/.PalindromeGame MacOS DirPath:
+	 * ~/users/<YourUsername>/.PalindromeGame Windows DirPath:
+	 * C:/users/<YourUsername>/desktop/.PalindromeGame
 	 */
+	// the .g filetype is a serialized bytestream containing the ArrayList object
+	// that contains the relevant users.
+	public static File children = new File(mainFile.getAbsolutePath() + "1.g");
+	public static File parents = new File(mainFile.getAbsolutePath() + "2.g");
+	public static File teachers = new File(mainFile.getAbsolutePath() + "3.g");
+	public static File messages = new File(mainFile.getAbsolutePath() + "4.g");
+	public static File admins = new File(mainFile.getAbsolutePath() + "5.g");
+	public static File words = new File(mainFile.getAbsolutePath() + "6.g");
+	public static File groups = new File(mainFile.getAbsolutePath() + "7.g");
 
 	public static void init() { // ensures that all file system locations are present.
 		System.out.println(mainFile.getParentFile().mkdirs());
@@ -46,15 +53,19 @@ public class FileHandler {
 			if (messages.exists() != true) {
 				System.out.println(messages.createNewFile());
 			}
+			if (admins.exists() != true) {
+				System.out.println(admins.createNewFile());
+			}
+			if (words.exists() != true) {
+				System.out.println(words.createNewFile());
+			}
+			if (groups.exists() != true) {
+				System.out.println(groups.createNewFile());
+			}
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
 	}
-
-	public static File children = new File(mainFile.getAbsolutePath() + "1.g"); // the .g filetype is a serialized bytestream containing the ArrayList object that contains the relevant users.
-	public static File parents = new File(mainFile.getAbsolutePath() + "2.g");
-	public static File teachers = new File(mainFile.getAbsolutePath() + "3.g");
-	public static File messages = new File(mainFile.getAbsolutePath() + "4.g");
 
 	@SuppressWarnings("resource")
 	public static ObjectOutputStream[] getStreams() { // this code returns a set of object output streams that allow for
@@ -63,7 +74,10 @@ public class FileHandler {
 			ObjectOutputStream[] output = { new ObjectOutputStream(new FileOutputStream(children)),
 					new ObjectOutputStream(new FileOutputStream(parents)),
 					new ObjectOutputStream(new FileOutputStream(teachers)),
-					new ObjectOutputStream(new FileOutputStream(messages)) };
+					new ObjectOutputStream(new FileOutputStream(messages)),
+					new ObjectOutputStream(new FileOutputStream(admins)),
+					new ObjectOutputStream(new FileOutputStream(words)),
+					new ObjectOutputStream(new FileOutputStream(groups)) };
 			return output;
 		} catch (IOException e) {
 			init();
@@ -91,9 +105,13 @@ public class FileHandler {
 	public static void getArrayLists() {
 		try {
 			CommLink.students = (ArrayList<Student>) new ObjectInputStream(new FileInputStream(children)).readObject();
-			CommLink.parents  = (ArrayList<Parent>)  new ObjectInputStream(new FileInputStream (parents)).readObject();
+			CommLink.parents = (ArrayList<Parent>) new ObjectInputStream(new FileInputStream(parents)).readObject();
 			CommLink.teachers = (ArrayList<Teacher>) new ObjectInputStream(new FileInputStream(teachers)).readObject();
 			CommLink.messages = (ArrayList<Message>) new ObjectInputStream(new FileInputStream(messages)).readObject();
+			CommLink.admins = (ArrayList<Administrator>) new ObjectInputStream(new FileInputStream(admins))
+					.readObject();
+			CommLink.groups = (ArrayList<Group>) new ObjectInputStream(new FileInputStream(groups)).readObject();
+			CommLink.words = (ArrayList<Word>) new ObjectInputStream(new FileInputStream(words)).readObject();
 		} catch (IOException e) {
 			init();
 		} catch (ClassNotFoundException e) {
