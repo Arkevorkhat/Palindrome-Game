@@ -125,4 +125,7 @@ public class Login { // TO DO: Create login sequence and implement session creat
 			e.printStackTrace();
 		}
 	}
+	public class LoginWindow{
+		
+	}
 }

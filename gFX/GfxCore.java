@@ -7,10 +7,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.TextField;
 import java.awt.Toolkit;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
-import backEnd.Login;
 import backEnd.EventListener;
 import backEnd.KeyListener;
 
@@ -36,7 +33,7 @@ public class GfxCore {
 	}
 	public static void init()
 	{
-		CoreFrame.setTitle(engine.Core._GAME_NAME);
+		CoreFrame.setTitle(engine.CONSTANTS._GAME_NAME);
 		CoreFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		CoreFrame.setMinimumSize(new Dimension(600, 400));
 		CoreFrame.setVisible(true);
