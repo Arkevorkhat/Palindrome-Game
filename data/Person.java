@@ -22,8 +22,8 @@ public class Person implements Serializable {
 	private long pwHash;
 	private long UID;
 	private Session sess;
-	private long ClassID; // allows for associating a person with a particular class group, without
-							// instantiating a Class object, as such a thing would be... untenable.
+	private Group classGroup; // allows for associating a person with a particular class group, without
+								// instantiating a Class object, as such a thing would be... untenable.
 
 	public Person(String UN, String PW) {
 		setUN(UN);
@@ -33,26 +33,20 @@ public class Person implements Serializable {
 
 	public Person() {
 	}
+
 	public boolean exists() {
 		return true;
 	}
-	@Deprecated
-	/*public Message[] getMessages() throws NoSuchElementException {
-		Message[] storage = {};
-		int j = 0;
-		for (Message i : CommLink.messages) {
-			if (i.getRecUID() == this.getUUID()) {
-				storage[j++] = i;
-			}
-		}
-		if (j > 0) {
-			return storage;
-		} else
-			throw new NoSuchElementException();
-	}*/
+
+	/*
+	 * public Message[] getMessages() throws NoSuchElementException { Message[]
+	 * storage = {}; int j = 0; for (Message i : CommLink.messages) { if
+	 * (i.getRecUID() == this.getUUID()) { storage[j++] = i; } } if (j > 0) { return
+	 * storage; } else throw new NoSuchElementException(); }
+	 */
 
 	public Boolean sendMessage(String Message, Person recipient) {
-		return null;
+		return CommLink.messages.add(new Message(Message, this.UID, recipient.UID));
 	}
 
 	@Deprecated
@@ -110,14 +104,6 @@ public class Person implements Serializable {
 		this.sess = sess;
 	}
 
-	public long getClassID() {
-		return ClassID;
-	}
-
-	public void setClassID(long classID) {
-		ClassID = classID;
-	}
-
 	public void resetPassword() {
 		String oldPass = JOptionPane.showInputDialog("What was your old password?");
 		if (Login.checkPassword(this, oldPass) == true) {
@@ -143,6 +129,7 @@ public class Person implements Serializable {
 		}
 		throw new IllegalArgumentException();
 	}
+
 	public Message[] getMessages() {
 		ArrayList<Message> Messages = new ArrayList<Message>();
 		for (Message m : CommLink.messages) {
@@ -152,5 +139,13 @@ public class Person implements Serializable {
 			}
 		}
 		return (Message[]) Messages.toArray();
+	}
+
+	public Group getGroup() {
+		return classGroup;
+	}
+
+	public void setGroup(Group classGroup) {
+		this.classGroup = classGroup;
 	}
 }

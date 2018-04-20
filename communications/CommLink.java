@@ -10,16 +10,19 @@ public abstract class CommLink {
 	public static ArrayList<Parent> parents;
 	public static ArrayList<Teacher> teachers;
 	public static ArrayList<Message> messages;
-	//public static ArrayList<>
+	public static ArrayList<Word> words;
 	public static ArrayList<Administrator> admins;
-	@SuppressWarnings("rawtypes")
-	public static ArrayList<ArrayList> people = new ArrayList<ArrayList>();
+	public static ArrayList<Group> groups;
 	static {
-		people.add(students);
-		people.add(parents);
-		people.add(teachers);
-		people.add(admins);
+		students = new ArrayList<Student>();
+		parents = new ArrayList<Parent>();
+		teachers = new ArrayList<Teacher>();
+		messages = new ArrayList<Message>();
+		words = new ArrayList<Word>();
+		admins = new ArrayList<Administrator>();
+		groups = new ArrayList<Group>();
 	}
+
 	public static interface listable<T> {
 		public void addToSet() throws IllegalAccessException;
 

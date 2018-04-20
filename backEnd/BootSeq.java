@@ -7,9 +7,5 @@ public class BootSeq extends CommLink {
 		
 		return true;
 	}
-	public void init() {
-		CommLink.people.add(CommLink.students);
-		CommLink.people.add(CommLink.parents);
-		CommLink.people.add(CommLink.teachers);
-	}
+
 }
