@@ -11,7 +11,6 @@ public class Teacher extends Adult implements listable<Teacher> {
 		try {
 			new Message(Message, this.getUUID(), recipient.getUUID()).addToSet();
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return true;
@@ -20,19 +19,21 @@ public class Teacher extends Adult implements listable<Teacher> {
 		
 		return null;
 	}
-	public Boolean broadcastMessage(String message) { //FIXME: add valid return statement.
+	public Boolean broadcastMessage(String message) { //FIX ME: add valid return statement.
 		for(Student i : CommLink.students) {
 			try {
 				new Message(message,i.getUUID(),this.getUUID()).addToSet();
+				return true;
 			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
+				return false;
 			}
 		}
-		return null;
+		return false;
 	}
-	public void addToSet() {
-		communications.CommLink.teachers.add(this);
+	public void addToSet() throws IllegalAccessException {
+		if(communications.CommLink.teachers.add(this)) {}
+		else throw new IllegalAccessException("Could not add this user.");
 	}
 	@Override
 	public Teacher getFromSet(long ID) throws IllegalArgumentException {

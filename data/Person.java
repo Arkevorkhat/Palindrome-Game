@@ -120,6 +120,11 @@ public class Person implements Serializable {
 				return i;
 			}
 		}
+		for (Administrator a : CommLink.admins) {
+			if (a.username.equals(Username)) {
+				return a;
+			}
+		}
 		throw new IllegalArgumentException();
 	}
 

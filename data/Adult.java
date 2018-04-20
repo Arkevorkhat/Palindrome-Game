@@ -8,7 +8,6 @@ public class Adult extends Person{
 		this.children = children;
 	}
 	public static void register() {
-		// TODO Auto-generated method stub
 	}	
 	
 }
