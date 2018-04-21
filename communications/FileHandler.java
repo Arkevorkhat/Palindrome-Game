@@ -14,7 +14,7 @@ import javax.swing.filechooser.FileSystemView;
 
 public class FileHandler {
 	public static File mainFile = new File(FileSystemView.getFileSystemView().getHomeDirectory().getAbsolutePath()
-			+ File.separatorChar + ".PalindromeGame");
+			+ File.separatorChar + ".PalindromeGame"+File.separatorChar);
 	/*
 	 * The above code requires a bit of explaining. FileSystemView allows for
 	 * source-level access to the computer's filesystem.
@@ -92,10 +92,13 @@ public class FileHandler {
 			outs[1].writeObject(CommLink.parents);
 			outs[2].writeObject(CommLink.teachers);
 			outs[3].writeObject(CommLink.messages);
+			outs[4].writeObject(CommLink.admins);
+			outs[5].writeObject(CommLink.words);
+			outs[6].writeObject(CommLink.groups);
 			return true;
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			e.printStackTrace(System.err);
 			return false;
 		}
 

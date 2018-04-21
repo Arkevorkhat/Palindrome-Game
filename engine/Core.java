@@ -1,8 +1,5 @@
 package engine;
 
-//import communications.FileHandler;
-import gFX.GfxCore;
-
 /*
  * Todos are closed by replacing "todo" with TO DO.
  */
@@ -14,8 +11,6 @@ public class Core {
 	 * TODO: create main method logic.
 	 */
 	public static void main(String[] args) {
-		//FileHandler.init();
-		//FileHandler.serialDump();
-		GfxCore.init();
+		backEnd.BootSeq.boot();
 	}
 }

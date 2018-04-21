@@ -6,3 +6,8 @@
 /LogIn.class
 /LogInWindow.class
 /LoginWindow.class
+/LoginWindow$submitListener.class
+/WindowComponent.class
+/WindowContainer.class
+/MainWindow.class
+/GfxCore$iWindow.class

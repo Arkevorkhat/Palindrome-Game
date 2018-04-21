@@ -1,8 +1,11 @@
 package backEnd;
 
 import java.awt.Component;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalField;
 import javax.swing.JOptionPane;
+import communications.CommLink;
 import data.Administrator;
 import data.Parent;
 import data.Person;
@@ -37,10 +40,14 @@ public class Login { // TO DO: Create login sequence and implement session creat
 	public static void logOut(String Username)
 	{
 		Person interim = Person.findPersonByName(Username);
-		if (interim.getSess().getTimeRemaining().getLong((TemporalField) interim.getSess().getTimeRemaining()) > 0)
+		if (
+			interim.getSess().getTimeRemaining()
+					.until(interim.getSess().getCreateTime().plusMinutes(interim.getSess().getDura().toMinutes()), ChronoUnit.MINUTES) > 0
+		)
 		{
 			interim.setSess(null);
 			JOptionPane.showConfirmDialog(null, "You have been logged out successfully.");
+			CommLink.loggedInUser = null;
 		}
 	}
 	public static Boolean checkPassword(Person p, String Password) throws IllegalArgumentException
@@ -125,7 +132,6 @@ public class Login { // TO DO: Create login sequence and implement session creat
 			e.printStackTrace();
 		}
 	}
-	public class LoginWindow{
-		
+	public class LoginWindow {
 	}
 }

@@ -13,6 +13,7 @@ public abstract class CommLink {
 	public static ArrayList<Word> words;
 	public static ArrayList<Administrator> admins;
 	public static ArrayList<Group> groups;
+	public static Person loggedInUser;
 	static {
 		students = new ArrayList<Student>();
 		parents = new ArrayList<Parent>();
@@ -21,6 +22,7 @@ public abstract class CommLink {
 		words = new ArrayList<Word>();
 		admins = new ArrayList<Administrator>();
 		groups = new ArrayList<Group>();
+		loggedInUser = new Person();
 	}
 
 	public static interface listable<T> {

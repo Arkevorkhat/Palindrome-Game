@@ -1,14 +1,20 @@
 package gFX;
 
+import java.awt.Button;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JDialog;
+import data.Person;
 
 public class LoginWindow {
+	TextField UNTF = new TextField(40);
+	TextField PWTF = new TextField(40);
 	public LoginWindow()
 	{
 		JDialog JDLogin = new JDialog(gFX.GfxCore.CoreFrame, "Login");
@@ -18,8 +24,6 @@ public class LoginWindow {
 		Container UNCont = new Container();
 		UNCont.setLayout(new FlowLayout());
 		UNCont.add(new Label("Username"));
-		TextField UNTF = new TextField(40);
-		TextField PWTF = new TextField(40);
 		PWTF.setEchoChar(engine.CONSTANTS.PW_DOT);
 		UNCont.add(UNTF);
 		Container PWCont = new Container();
@@ -29,6 +33,28 @@ public class LoginWindow {
 		JDLogin.add(UNCont);
 		JDLogin.add(PWCont);
 		JDLogin.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		Button LI = new Button("Submit");
+		LI.setSize(200, 25);
+		LI.addActionListener(new submitListener());
+		JDLogin.add(LI);
 		JDLogin.setVisible(true);
+	}
+	private class submitListener implements ActionListener {
+		private String Username;
+		private String Password;
+		@Override
+		public void actionPerformed(ActionEvent e)
+		{
+			Username = UNTF.getText();
+			Password = PWTF.getText();
+			try
+			{
+				Person stor = data.Person.findPersonByName(Username);
+				stor.setSess(backEnd.Login.logIn(Username, Password));
+			} catch (IllegalArgumentException e1)
+			{
+				System.err.println(e1.getMessage());
+			}
+		}
 	}
 }
