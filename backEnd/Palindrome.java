@@ -2,17 +2,17 @@ package backEnd;
 
 import java.util.Random;
 
-public final class Palindrome {
+public final class Palindrome extends GameLogicController {
 	/*
 	 * 
 	 */
-	public static String reverse(String input) { //required for correct function of the check and make palindrome methods.
+	private static String reverse(String input) { //required for correct function of the check and make palindrome methods.
 		StringBuffer in = new StringBuffer(input);
 		in.reverse();
 		return in.toString();
 	}
-
-	public static Boolean checkPalindrome(String input) { //returns a boolean whether or not the input is a palindrome.
+	@Override
+	public Boolean check(String input) { //returns a boolean whether or not the input is a palindrome.
 
 		String check = reverse(input);
 		if (check.equals(input)) {
@@ -20,8 +20,9 @@ public final class Palindrome {
 		} else
 			return false;
 	}
-
-	public static String makePalindrome(int length) {  //returns a String of length length, said string will be palindromic.
+	@Override
+	public String make(String input) {  //returns a String of length length, said string will be palindromic.
+		int length = Integer.parseInt(input);
 		if (length < Integer.MAX_VALUE) {
 			Random r = new Random();
 			StringBuffer storage = new StringBuffer();

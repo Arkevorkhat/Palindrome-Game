@@ -3,7 +3,7 @@ package data;
 import communications.CommLink;
 import communications.CommLink.listable;
 
-public class Administrator extends Person implements listable {
+public class Administrator extends Person implements listable<Administrator> {
 
 	/**
 	 * 
@@ -18,7 +18,7 @@ public class Administrator extends Person implements listable {
 		else throw new IllegalAccessException();
 	}
 	@Override
-	public Object getFromSet(long ID) throws IllegalArgumentException {
+	public Administrator getFromSet(long ID) throws IllegalArgumentException {
 		for (Administrator a : CommLink.admins) {
 			if(a.getUUID()==ID) {
 				return a;
