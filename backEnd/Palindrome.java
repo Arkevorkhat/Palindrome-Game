@@ -2,7 +2,7 @@ package backEnd;
 
 import java.util.Random;
 
-public final class Palindrome extends GameLogicController {
+public class Palindrome extends GameLogicController {
 	/*
 	 * 
 	 */

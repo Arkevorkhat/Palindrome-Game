@@ -6,6 +6,7 @@ import gFX.MainWindow;
 public class BootSeq extends CommLink {
 	public static boolean boot()
 	{
+		communications.FileHandler.init();
 		communications.FileHandler.getArrayLists();
 		new MainWindow().init();
 		return true;

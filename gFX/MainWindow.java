@@ -25,12 +25,12 @@ public class MainWindow implements iWindow {
 		GfxCore.CoreFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		GfxCore.CoreFrame.addWindowListener(new engine.WindowCloseOperation());
 		GfxCore.CoreFrame.setMinimumSize(new Dimension(600, 400));
-		GfxCore.CoreFrame.setVisible(true);
 		GfxCore.CoreFrame.setLayout(new GridLayout(2, 1));
 		GfxCore.CoreFrame.add(TF);
 		GL.setLayout(new GridLayout(1, 2));
 		GfxCore.CoreFrame.add(GL);
 		GL.add(loginButton);
 		GL.add(guestButton);
+		GfxCore.CoreFrame.setVisible(true);
 	}
 }

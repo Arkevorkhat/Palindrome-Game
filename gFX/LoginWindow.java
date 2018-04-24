@@ -10,14 +10,22 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+
+import backEnd.Palindrome;
 import data.Person;
 
 public class LoginWindow {
+	/**
+	 * @author Arkev
+	 * @since 23-APR-18
+	 */
 	TextField UNTF = new TextField(40);
 	TextField PWTF = new TextField(40);
-	public LoginWindow()
-	{
-		JDialog JDLogin = new JDialog(gFX.GfxCore.CoreFrame, "Login");
+	public JDialog JDLogin = new JDialog(gFX.GfxCore.CoreFrame, "Login");
+
+	public LoginWindow() {
+
 		JDLogin.setSize(new Dimension(500, 350));
 		JDLogin.setLayout(new GridLayout(4, 1));
 		JDLogin.add(new Label("Please Input your Username and Password"));
@@ -34,27 +42,28 @@ public class LoginWindow {
 		JDLogin.add(PWCont);
 		JDLogin.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		Button LI = new Button("Submit");
-		LI.setSize(200, 25);
 		LI.addActionListener(new submitListener());
 		JDLogin.add(LI);
 		JDLogin.setVisible(true);
 	}
+
 	private class submitListener implements ActionListener {
 		private String Username;
 		private String Password;
+
 		@Override
-		public void actionPerformed(ActionEvent e)
-		{
+		public void actionPerformed(ActionEvent e) {
 			Username = UNTF.getText();
 			Password = PWTF.getText();
-			try
-			{
+			try {
 				Person stor = data.Person.findPersonByName(Username);
 				stor.setSess(backEnd.Login.logIn(Username, Password));
-			} catch (IllegalArgumentException e1)
-			{
+			} catch (IllegalArgumentException e1) {
 				System.err.println(e1.getMessage());
 			}
+			JOptionPane.showConfirmDialog(JDLogin, "Logged in Successfully!");
+			JDLogin.dispose();
+			GameWindow GW = new GameWindow(new Palindrome());
 		}
 	}
 }
