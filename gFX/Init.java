@@ -16,7 +16,12 @@ public class Init extends GfxCore {
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		return jf;
 	}
-
+	public static void reset() {
+		GfxCore.CoreFrame = new JFrame();
+		GfxCore.CoreFrame.setMinimumSize(engine.CONSTANTS._DEFAULT_MINIMUM_WINDOW_SIZE);
+		GfxCore.CoreFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		GfxCore.CoreFrame.addWindowListener(new engine.WindowCloseOperation());
+	}
 	public void destroy(JFrame input) {
 		input.dispose();
 	}

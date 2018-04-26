@@ -1,7 +1,14 @@
 package backEnd;
 
-public class BootSeq {
-	public static boolean boot() { //ensures that all of the arrayLists are properly set up, and that they have at least one person inside.
+import communications.CommLink;
+import gFX.MainWindow;
+
+public class BootSeq extends CommLink {
+	public static boolean boot()
+	{
+		communications.FileHandler.init();
+		communications.FileHandler.getArrayLists();
+		new MainWindow().init();
 		return true;
 	}
 }

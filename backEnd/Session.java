@@ -1,10 +1,16 @@
 package backEnd;
 
+import java.io.Serializable;
 import java.time.*;
 import java.time.temporal.Temporal;
 import java.util.Random;
 
-public class Session {
+public class Session implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Session(String UN, long LT) {
 		/*
 		 * UN needs to be present and correct, if passed an invalid username, the user
@@ -37,6 +43,9 @@ public class Session {
 	}
 
 	public Duration getLifeTime() {
+		return this.dura;
+	}
+	public Duration getDura() {
 		return this.dura;
 	}
 

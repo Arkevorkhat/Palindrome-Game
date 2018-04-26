@@ -1,2 +1,0 @@
-files/messages.txt;
-files/users.txt;
