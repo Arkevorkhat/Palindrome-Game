@@ -13,6 +13,7 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 import backEnd.Palindrome;
+import communications.CommLink;
 import data.Person;
 
 public class LoginWindow {
@@ -58,12 +59,14 @@ public class LoginWindow {
 			try {
 				Person stor = data.Person.findPersonByName(Username);
 				stor.setSess(backEnd.Login.logIn(Username, Password));
+				if(CommLink.loggedInUser.equals(stor)&&CommLink.loggedInUser.getSess()!=null) {
+					JOptionPane.showConfirmDialog(JDLogin, "Logged in Successfully!");
+					JDLogin.dispose();
+					GameWindow GW = new GameWindow(new Palindrome());
+				}
 			} catch (IllegalArgumentException e1) {
 				System.err.println(e1.getMessage());
 			}
-			JOptionPane.showConfirmDialog(JDLogin, "Logged in Successfully!");
-			JDLogin.dispose();
-			GameWindow GW = new GameWindow(new Palindrome());
 		}
 	}
 }

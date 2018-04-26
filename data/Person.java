@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import backEnd.Login;
 import backEnd.Session;
 import communications.CommLink;
+import communications.FileHandler;
 import communications.Message;
 
 public class Person implements Serializable {
@@ -22,11 +23,13 @@ public class Person implements Serializable {
 	private Session sess;
 	private Group classGroup; // allows for associating a person with a particular class group, without
 								// instantiating a Class object, as such a thing would be... untenable.
+	public boolean isAdmin;
 	public Person(String UN, String PW)
 	{
 		setUN(UN);
 		UID = ++lastUID;
 		pwHash = hashPW(PW);
+		isAdmin = false;
 	}
 	public Person()
 	{
@@ -105,7 +108,7 @@ public class Person implements Serializable {
 		}
 	}
 	public static Person findPersonByName(String Username) throws IllegalArgumentException
-	{
+	{try{
 		for (Student i : CommLink.students)
 		{
 			if (i.username.equals(Username))
@@ -133,7 +136,10 @@ public class Person implements Serializable {
 			{
 				return a;
 			}
-		}
+		}}
+	catch(java.lang.NullPointerException e) {
+		FileHandler.init();
+	}
 		throw new IllegalArgumentException("Username does not map to an existing user. Please Register.");
 	}
 	public Message[] getMessages()

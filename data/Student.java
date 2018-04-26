@@ -8,8 +8,8 @@ import communications.Message;
 
 public class Student extends Person implements listable<Student>{
 	private static final long serialVersionUID = -4062870041480934701L;
-	int currDifficulty;   //Difficulty relates to the length of words that the child will be shown.
-	int currGradeLevel;   //Difficulty should not exceed 10*logn(GradeLevel)
+	int currDifficulty;   //difficulty*5 = the time for each identification.
+	int currGradeLevel; 
 	int score;			  //Each successful identification will increase this number by one.
 	private Parent[] parents;
 	public Student(String UN, String PW, int curDifficulty, int gradeLevel) {
@@ -18,6 +18,9 @@ public class Student extends Person implements listable<Student>{
 		currGradeLevel = gradeLevel;
 		score = 0;
 		this.addToSet();
+	}
+	public Student(String username, String password) {
+		
 	}
 	public void setCurrDifficulty(int inputDifficulty) {
 		this.currDifficulty=inputDifficulty;
