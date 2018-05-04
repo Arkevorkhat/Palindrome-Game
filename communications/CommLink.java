@@ -28,6 +28,6 @@ public abstract class CommLink {
 	public static interface listable<T> {
 		public void addToSet() throws IllegalAccessException;
 
-		public Object getFromSet(long ID) throws IllegalArgumentException;
+		public T getFromSet(long ID) throws IllegalArgumentException;
 	}
 }

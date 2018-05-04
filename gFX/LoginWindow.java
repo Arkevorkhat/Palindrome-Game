@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
+import backEnd.Login;
 import backEnd.Palindrome;
 import data.Person;
 
@@ -57,13 +58,16 @@ public class LoginWindow {
 			Password = PWTF.getText();
 			try {
 				Person stor = data.Person.findPersonByName(Username);
-				stor.setSess(backEnd.Login.logIn(Username, Password));
+				//if (/*Login.checkPassword(stor, Password)*/true==true) {
+					stor.setSess(backEnd.Login.logIn(Username, Password));
+					JOptionPane.showConfirmDialog(JDLogin, "Logged in Successfully!");
+					JDLogin.dispose();
+					new GameWindow(new Palindrome());
+				//}
 			} catch (IllegalArgumentException e1) {
 				System.err.println(e1.getMessage());
+				new GameWindow(new Palindrome());
 			}
-			JOptionPane.showConfirmDialog(JDLogin, "Logged in Successfully!");
-			JDLogin.dispose();
-			GameWindow GW = new GameWindow(new Palindrome());
 		}
 	}
 }

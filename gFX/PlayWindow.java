@@ -12,17 +12,16 @@ import javax.swing.Box;
 
 import backEnd.GameLogicController;
 import communications.CommLink;
-import engine.CONSTANTS;
 
 public class PlayWindow {
-	static GameLogicController GLC;
-	static Button Y = new Button("Yes");
-	static Button N = new Button("No");
-	static Button Nl = new Button("Null");
-	static Button S = new Button("Start");
-	static Container BC = new Container();
+	GameLogicController GLC;
+	Button Y = new Button("Yes");
+	Button N = new Button("No");
+	Button Nl = new Button("Starts with a Vowel");
+	Button S = new Button("Start");
+	Container BC = new Container();
 
-	static TextField output = new TextField(40);
+	TextField output = new TextField(40);
 
 	public PlayWindow(GameLogicController G) {
 		GLC = G;
@@ -33,38 +32,53 @@ public class PlayWindow {
 		BC.add(Box.createVerticalGlue());
 		BC.add(N);
 		output.setEditable(false);
-		windowPrep();
+		GfxCore.CoreFrame.removeAll();
 		S.addActionListener(new PWButtonListener());
+		GfxCore.CoreFrame.setLayout(new GridLayout(1,6));
 		GfxCore.CoreFrame.add(S);
+		GfxCore.CoreFrame.add(output);
+		GfxCore.CoreFrame.revalidate();
+		GfxCore.CoreFrame.repaint();
 		GfxCore.CoreFrame.setVisible(true);
 	}
 
-	public static void windowPrep() {
-		WindowFactory.makeWindow(CONSTANTS._GAME_NAME);
+	public void windowPrep() {
+		GfxCore.CoreFrame.removeAll();
+		GfxCore.CoreFrame.revalidate();
 		GfxCore.CoreFrame.setLayout(new GridLayout(6, 1));
-		GfxCore.CoreFrame.add(output);
+		GfxCore.CoreFrame.add(this.output);
 		GfxCore.CoreFrame.add(new Label("Is the above word a palindrome?"));
 	}
+	
+	public void playGame() {
+		GfxCore.CoreFrame.remove(S);
+		GfxCore.CoreFrame.revalidate();
+		BC.add(Y);
+		BC.add(Nl);
+		BC.add(N);
+		GfxCore.CoreFrame.add(BC);
+		GfxCore.CoreFrame.repaint();
+		GfxCore.CoreFrame.setVisible(true);
+	}
 
-	private class PWButtonListener implements ActionListener {
+	
+	public class PWButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			switch (arg0.getActionCommand()) {
 			case "Start":
-				windowPrep();
-				GfxCore.CoreFrame.add(BC);
-				GfxCore.CoreFrame.setVisible(true);
+				playGame();
 				break;
 			case "Y":
-				CommLink.loggedInUser.Score += (GLC.check(output.getText())==true)?1:0;
+				CommLink.loggedInUser.Score += (GLC.check(output.getText()) == true) ? 1 : 0;
 				break;
 			case "N":
-				CommLink.loggedInUser.Score += (GLC.check(output.getText())==false)?1:0;
+				CommLink.loggedInUser.Score += (GLC.check(output.getText()) == false) ? 1 : 0;
 				break;
 			case "O":
-				switch(output.getText().toUpperCase().charAt(0)) {
-				case'A':
-				case'E':
+				switch (output.getText().toUpperCase().charAt(0)) {
+				case 'A':
+				case 'E':
 				case 'I':
 				case 'O':
 				case 'U':

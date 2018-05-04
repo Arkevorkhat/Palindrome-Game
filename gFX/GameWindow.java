@@ -36,13 +36,12 @@ public class GameWindow {
 		GfxCore.CoreFrame.addWindowListener(new WindowCloseOperation());
 		GfxCore.CoreFrame.setLayout(new GridLayout(1, 3));
 		C1Container.setLayout(new BoxLayout(C1Container, BoxLayout.Y_AXIS));
-		C1Container.add(Box.createRigidArea(spacing));
+		PlB.addActionListener(new ButtonListener());
+		PrB.addActionListener(new ButtonListener());
+		SB.addActionListener(new ButtonListener());
 		C1Container.add(PlB);
-		C1Container.add(Box.createRigidArea(spacing));
 		C1Container.add(PrB);
-		C1Container.add(Box.createRigidArea(spacing));
 		C1Container.add(SB);
-		C1Container.add(Box.createRigidArea(spacing));
 		if (CommLink.loggedInUser.isAdmin == true) {
 			C1Container.add(AB);
 		}
@@ -60,10 +59,7 @@ public class GameWindow {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			switch (arg0.getActionCommand()) {
-			case "Play":
-				new PlayWindow(new Palindrome());
-			}
+			new PlayWindow(new Palindrome());
 		}
 
 	}

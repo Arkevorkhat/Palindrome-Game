@@ -1,7 +1,6 @@
 package backEnd;
 
 import communications.CommLink;
-import gFX.GameWindow;
 import gFX.MainWindow;
 
 public class BootSeq extends CommLink {
@@ -9,8 +8,7 @@ public class BootSeq extends CommLink {
 	{
 		communications.FileHandler.init();
 		communications.FileHandler.getArrayLists();
-		//new MainWindow().init();
-		new GameWindow(new Palindrome());
+		new MainWindow().init();
 		return true;
 	}
 }

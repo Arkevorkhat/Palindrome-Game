@@ -4,6 +4,7 @@ import java.awt.Button;
 import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.Label;
+import java.awt.TextArea;
 import java.util.Vector;
 
 import javax.swing.Box;
@@ -28,6 +29,7 @@ public class AdminWindow {
 	JList<Teacher> JLtr;
 	JList<Administrator> JLad;
 	JList<Word> JLwr;
+	TextArea TA = new TextArea();
 	Label ml = new Label("Select a view");
 	Button B1 = new Button("Student Info");
 	Button B2 = new Button("Words");
@@ -36,6 +38,9 @@ public class AdminWindow {
 	Button B5 = new Button("Parents");
 
 	public AdminWindow() {
+		for(Student s : CommLink.students) {
+			TA.append(s.Score+" : "+s.username+'\n');
+		}
 		SV.addAll(CommLink.students);
 		PV.addAll(CommLink.parents);
 		TV.addAll(CommLink.teachers);
@@ -58,8 +63,13 @@ public class AdminWindow {
 		this.col2_1Container.add(B5);
 		this.col2Container.add(this.col2_1Container);
 		this.col2Container.add(Box.createVerticalGlue());
+		this.col3Container.add(TA);
 		WindowFactory.makeWindow("Administrator Console");
 		GfxCore.CoreFrame.setLayout(new GridLayout(1, 3));
+		GfxCore.CoreFrame.add(this.col1Container);
+		GfxCore.CoreFrame.add(this.col2Container);
+		GfxCore.CoreFrame.add(this.col3Container);
+		GfxCore.CoreFrame.revalidate();
 		GfxCore.CoreFrame.setVisible(true);
 	}
 	
