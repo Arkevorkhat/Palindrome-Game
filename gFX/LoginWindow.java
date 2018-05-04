@@ -32,9 +32,9 @@ public class LoginWindow {
 		Container UNCont = new Container();
 		UNCont.setLayout(new FlowLayout());
 		UNCont.add(new Label("Username"));
-		PWTF.setEchoChar(engine.CONSTANTS.PW_DOT);
 		UNCont.add(UNTF);
 		Container PWCont = new Container();
+		PWTF.setEchoChar(engine.CONSTANTS.PW_DOT);
 		PWCont.setLayout(new FlowLayout());
 		PWCont.add(new Label("Password"));
 		PWCont.add(PWTF);

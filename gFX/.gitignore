@@ -12,3 +12,9 @@
 /MainWindow.class
 /GfxCore$iWindow.class
 /GameWindow.class
+/GameWindow$ButtonListener.class
+/PlayWindow.class
+/ScoresWindow.class
+/AdminWindow.class
+/WindowFactory.class
+/PlayWindow$PWButtonListener.class

@@ -22,6 +22,8 @@ public class Person implements Serializable {
 	private Session sess;
 	private Group classGroup; // allows for associating a person with a particular class group, without
 								// instantiating a Class object, as such a thing would be... untenable.
+	public boolean isAdmin = false;
+	public int Score = 0;
 	public Person(String UN, String PW)
 	{
 		setUN(UN);
