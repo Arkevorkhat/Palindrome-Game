@@ -10,8 +10,7 @@ public class Debug {
 		for(Student s : CommLink.students) {
 			System.out.print(s.username+" : ");
 			System.out.print(s.getPWHash()+" : ");
-			System.out.print(s.getUUID()+" : ");
-			System.out.println(s.getGroup().GroupID);
+			System.out.println(s.getUUID()+" : ");
 		}
 		System.out.println("Parents: ");
 		for(Parent p : CommLink.parents) {

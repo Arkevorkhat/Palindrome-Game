@@ -11,3 +11,5 @@
 /EventListener.class
 /Login$LoginWindow.class
 /GameLogicController.class
+/Login$userType.class
+/UserType.class

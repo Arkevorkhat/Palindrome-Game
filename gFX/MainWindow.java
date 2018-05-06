@@ -14,10 +14,11 @@ public class MainWindow implements iWindow {
 	private static TextField TF = new TextField(10);
 	private static Container GL = new Container();
 	private static Button loginButton = new Button("Login");
-	private static Button guestButton = new Button("Continue as Guest");
+	private static Button guestButton = new Button("Register");
 	public MainWindow() {
 		TF.addKeyListener(new KeyListener());
 		loginButton.addActionListener(new EventListener());
+		guestButton.addActionListener(new EventListener());
 	}
 	public void init()
 	{

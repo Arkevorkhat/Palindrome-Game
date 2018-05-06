@@ -11,7 +11,8 @@ public class Administrator extends Person implements listable<Administrator> {
 	private static final long serialVersionUID = 1L;
 	public Administrator(String UN, String PW) {
 		super(UN, PW);
-		isAdmin = true;
+
+		isAdmin=true;
 	}
 	@Override
 	public void addToSet() throws IllegalAccessException {

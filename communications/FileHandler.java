@@ -52,8 +52,8 @@ public class FileHandler {
 	 */
 
 	public static void init() { // ensures that all file system locations are present.
-		System.out.println(mainFile.mkdirs());
-		System.out.println(mainFile);
+		//System.out.println(mainFile.mkdirs());
+		//System.out.println(mainFile);
 		try {
 			if (children.exists() != true) {
 				System.out.println(children.createNewFile());
@@ -116,7 +116,8 @@ public class FileHandler {
 			return true;
 
 		} catch (IOException e) {
-			e.printStackTrace(System.err);
+			init();
+			serialDump();
 			return false;
 		}
 

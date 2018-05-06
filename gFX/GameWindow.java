@@ -1,11 +1,13 @@
 package gFX;
 
+import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -48,9 +50,10 @@ public class GameWindow {
 		Container C2Container = new Container();
 		C2Container.setLayout(new GridLayout(1, 3));
 		GfxCore.CoreFrame.add(C1Container);
+		GfxCore.CoreFrame.add(new Button("test"));
+		GfxCore.CoreFrame.add(new WindowSideComponent());
 		GfxCore.CoreFrame.setVisible(true);
-	}
-
+}	
 	public GameLogicController getGLC() {
 		return this.logicMain;
 	}

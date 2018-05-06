@@ -19,6 +19,9 @@ public class Student extends Person implements listable<Student>{
 		//score = 0;
 		this.addToSet();
 	}
+	public Student(String username, String password) {
+		
+	}
 	public void setCurrDifficulty(int inputDifficulty) {
 		this.currDifficulty=inputDifficulty;
 	}
