@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
+import backEnd.Login;
 import backEnd.Palindrome;
 import communications.CommLink;
 import data.Person;
@@ -33,9 +34,9 @@ public class LoginWindow {
 		Container UNCont = new Container();
 		UNCont.setLayout(new FlowLayout());
 		UNCont.add(new Label("Username"));
-		PWTF.setEchoChar(engine.CONSTANTS.PW_DOT);
 		UNCont.add(UNTF);
 		Container PWCont = new Container();
+		PWTF.setEchoChar(engine.CONSTANTS.PW_DOT);
 		PWCont.setLayout(new FlowLayout());
 		PWCont.add(new Label("Password"));
 		PWCont.add(PWTF);
@@ -64,8 +65,14 @@ public class LoginWindow {
 					JDLogin.dispose();
 					GameWindow GW = new GameWindow(new Palindrome());
 				}
+				//if (/*Login.checkPassword(stor, Password)*/true==true) {
+					stor.setSess(backEnd.Login.logIn(Username, Password));
+					JOptionPane.showConfirmDialog(JDLogin, "Logged in Successfully!");
+					JDLogin.dispose();
+					new GameWindow(new Palindrome());
 			} catch (IllegalArgumentException e1) {
 				System.err.println(e1.getMessage());
+				new GameWindow(new Palindrome());
 			}
 		}
 	}
