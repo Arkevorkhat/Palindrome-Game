@@ -6,7 +6,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
 import communications.CommLink;
 import data.*;
 
@@ -75,6 +79,13 @@ public class FileHandler {
 			}
 			if (groups.exists() != true) {
 				System.out.println(groups.createNewFile());
+			}
+			if (CommLink.words==new ArrayList<Word>()) {
+				Scanner in = new Scanner(new File(mainFile.getAbsolutePath()+File.separatorChar+"database.txt"));
+				ArrayList<String> stor = new ArrayList<String>();
+				for(int i =0;in.hasNextLine();i++) {
+					stor.add(in.next(Pattern.compile("*\n")));
+					System.out.println(stor.get(i));}
 			}
 		} catch (IOException e) {
 			System.out.println(e.getMessage());

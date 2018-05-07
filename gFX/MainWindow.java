@@ -28,10 +28,9 @@ public class MainWindow implements iWindow {
 		GfxCore.CoreFrame.setMinimumSize(new Dimension(600, 400));
 		GfxCore.CoreFrame.setLayout(new GridLayout(2, 1));
 		GfxCore.CoreFrame.add(TF);
-		GL.setLayout(new GridLayout(1, 2));
+		GL.setLayout(new GridLayout(1, 1));
 		GfxCore.CoreFrame.add(GL);
 		GL.add(loginButton);
-		GL.add(guestButton);
 		GfxCore.CoreFrame.setVisible(true);
 	}
 }

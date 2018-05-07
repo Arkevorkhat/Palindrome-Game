@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 
 import backEnd.Login;
 import backEnd.Palindrome;
+import backEnd.UserType;
 import communications.CommLink;
 import data.Person;
 
@@ -44,8 +45,18 @@ public class LoginWindow {
 		JDLogin.add(PWCont);
 		JDLogin.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		Button LI = new Button("Submit");
+		LI.setActionCommand("L");
 		LI.addActionListener(new submitListener());
-		JDLogin.add(LI);
+		Container C = new Container();
+		Button R = new Button("Register");
+		R.setActionCommand("R");
+		R.addActionListener(new submitListener());
+
+		C.setLayout(new GridLayout(1, 2));
+		C.add(LI);
+		C.add(R);
+		C.setVisible(true);
+		JDLogin.add(C);
 		JDLogin.setVisible(true);
 	}
 
@@ -57,22 +68,27 @@ public class LoginWindow {
 		public void actionPerformed(ActionEvent e) {
 			Username = UNTF.getText();
 			Password = PWTF.getText();
-			try {
-				Person stor = data.Person.findPersonByName(Username);
-				stor.setSess(backEnd.Login.logIn(Username, Password));
-				if(CommLink.loggedInUser.equals(stor)&&CommLink.loggedInUser.getSess()!=null) {
-					JOptionPane.showConfirmDialog(JDLogin, "Logged in Successfully!");
-					JDLogin.dispose();
-					GameWindow GW = new GameWindow(new Palindrome());
+			if ((Username.equals("") || Password.equals(""))) {
+			} else {
+				switch (e.getActionCommand()) {
+				case "L":
+					try {
+						Person stor = data.Person.findPersonByName(Username);
+						if (Login.checkPassword(stor, Password)) {
+							stor.setSess(backEnd.Login.logIn(Username, Password));
+							JOptionPane.showConfirmDialog(JDLogin, "Logged in Successfully!");
+							JDLogin.dispose();
+							new GameWindow(new Palindrome());
+						}
+					} catch (IllegalArgumentException e1) {
+						System.err.println(e1.getMessage());
+						new GameWindow(new Palindrome());
+					}
+					break;
+				case "R":
+					Login.register(Username, Password, UserType.Student);
+					JOptionPane.showMessageDialog(JDLogin, "Registered Successfully");
 				}
-				//if (/*Login.checkPassword(stor, Password)*/true==true) {
-					stor.setSess(backEnd.Login.logIn(Username, Password));
-					JOptionPane.showConfirmDialog(JDLogin, "Logged in Successfully!");
-					JDLogin.dispose();
-					new GameWindow(new Palindrome());
-			} catch (IllegalArgumentException e1) {
-				System.err.println(e1.getMessage());
-				new GameWindow(new Palindrome());
 			}
 		}
 	}

@@ -50,8 +50,6 @@ public class GameWindow {
 		Container C2Container = new Container();
 		C2Container.setLayout(new GridLayout(1, 3));
 		GfxCore.CoreFrame.add(C1Container);
-		GfxCore.CoreFrame.add(new Button("test"));
-		GfxCore.CoreFrame.add(new WindowSideComponent());
 		GfxCore.CoreFrame.setVisible(true);
 }	
 	public GameLogicController getGLC() {
@@ -62,7 +60,7 @@ public class GameWindow {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			new PlayWindow(new Palindrome());
+			new PLayWindowGUI();
 		}
 
 	}

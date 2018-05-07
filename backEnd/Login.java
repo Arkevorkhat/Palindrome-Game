@@ -88,19 +88,21 @@ public class Login { // TO DO: Create login sequence and implement session creat
 	 */
 	public static void register(String Username, String Password, UserType UT) {
 		try {
-			switch (UT) {
-			case Parent:
-				new Parent(Username, Password, null).addToSet();
-				break;
-			case Student:
-				new Student(Username, Password, 1, 1).addToSet();
-				break;
-			case Teacher:
-				new Teacher(Username, Password, null, 0).addToSet();
-				break;
-			default:
-				System.out.println("Failed to create user.");
-
+			if (Username.equals("") || Password.equals("")) {
+			} else {
+				switch (UT) {
+				case Parent:
+					new Parent(Username, Password, null).addToSet();
+					break;
+				case Student:
+					new Student(Username, Password, 1, 1).addToSet();
+					break;
+				case Teacher:
+					new Teacher(Username, Password, null, 0).addToSet();
+					break;
+				default:
+					System.out.println("Failed to create user.");
+				}
 			}
 		} catch (IllegalAccessException e) {
 			communications.FileHandler.getArrayLists();
