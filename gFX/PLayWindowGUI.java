@@ -76,7 +76,7 @@ public class PLayWindowGUI {
 		Input.setBackground(new Color(224, 255, 255));
 		Input.setForeground(new Color(148, 0, 211));
 		Input.setFont(new Font("Courier 10 Pitch", Font.BOLD, 30));
-		Input.setText("WORD PLACEHOLDER");
+		Input.setText("RACECAR");
 		Input.setBounds(97, 189, 600, 70);
 		frame.getContentPane().add(Input);
 		Input.setColumns(40);

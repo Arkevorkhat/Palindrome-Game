@@ -2,6 +2,7 @@ package engine;
 
 import backEnd.BootSeq;
 import backEnd.Palindrome;
+import gFX.AdminWindow;
 import gFX.MainWindow;
 import gFX.PlayWindow;
 
@@ -16,6 +17,7 @@ public class Core {
 	 * TO DO: create main method logic.
 	 */
 	public static void main(String[] args) {
-		BootSeq.boot();
+		new AdminWindow();
+		//BootSeq.boot();
 	}
 }

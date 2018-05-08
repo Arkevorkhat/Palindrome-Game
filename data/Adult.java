@@ -9,5 +9,4 @@ public class Adult extends Person{
 	}
 	public static void register() {
 	}	
-	
 }
